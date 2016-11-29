@@ -1,3 +1,1 @@
-# voidYatzy
-
-SuperZombieYatzy
+# voidYatzy - Ultimate zombie yatzy
