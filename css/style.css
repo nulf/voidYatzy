@@ -1,0 +1,33 @@
+/* scoreTable */
+table {
+    border-collapse: collapse;
+    width: 375px;
+    float: right;
+    border: 10px;
+}
+
+.table div table h2 {
+	float: right;
+}
+
+td:hover, th:hover {
+	cursor: pointer;
+	background-color: lime;
+}
+
+table, td, th {
+    border: 2.3px solid black;
+}
+
+th, td {
+    text-align: left;
+    padding: 4px;
+}
+
+/* // If we want lightgray between rows, 
+tr:nth-child(even) {
+	background-color: #f2f2f2
+}
+/*
+
+/* end scoreTable /*
