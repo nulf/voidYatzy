@@ -39,8 +39,8 @@ $(function() {
 	$("button").click(function() {
 		for( i = 0; i < 5 ; i++ ) {
 			var ran = Math.round(Math.random()*20) / 10 + 2;
-			$("[data-type=dice"+i+"]").attr("style","animation: spin "+(ran-0.01)+"s 1 linear;")
-			doScaledTimeout(i,ran*1000);
+			$("[data-type=dice"+i+"]").attr("style","animation: spin "+ran+"s 1 linear;")
+			doScaledTimeout(i,Math.floor(ran*1001));
 		}
 	});
 })
