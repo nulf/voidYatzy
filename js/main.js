@@ -1,6 +1,6 @@
 /* Global Variables
 =================================== */
-var users, dices, scores;
+var users, dices = [], scores;
 
 /* ScoreNames to the table.
 ===================================*/
@@ -67,4 +67,14 @@ function turn() {
 			$("[data-type=dice]").addClass('dice show-bottom');
 		break;
 	}
+}
+
+// throwDice function, accepting one array as input(wich shows locked dices as well)
+// Randomizing new value for dices that arent locked
+function throwDice(dices) {
+
+	// Loop through each item in "dices", if it's a number give it a random value(1-6)
+	dices.forEach(function(dice, index) {
+		if(typeof dice === 'number') dices[index] = Math.floor(Math.random() * 6) + 1;
+	});
 }
