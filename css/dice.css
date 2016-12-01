@@ -1,0 +1,111 @@
+.hold {
+  width: 80px;
+  height: 80px;
+  position: relative;
+  -webkit-perspective: 1000px;
+          perspective: 1000px;
+  z-index: 999;
+  -webkit-transition: -webkit-transform 0.2s ease 0;
+  transition: -webkit-transform 0.2s ease 0;
+  transition: transform 0.2s ease 0;
+  transition: transform 0.2s ease 0, -webkit-transform 0.2s ease 0;
+}
+.dice {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+  -webkit-transition: -webkit-transform 0.5s;
+  transition: -webkit-transform 0.5s;
+  transition: transform 0.5s;
+  transition: transform 0.5s, -webkit-transform 1s;
+}
+.dice figure {
+  width: 78px;
+  height: 78px;
+  display: block;
+  position: absolute;
+  border: 1px solid #000;
+  box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.8);
+  text-align: center;
+  line-height: 200px;
+  font-size: 60px;
+  background-color: #FFF;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+.dice .front {
+  -webkit-transform: rotateY(0deg) translateZ(38px);
+          transform: rotateY(0deg) translateZ(38px);
+  background-image: url('../images/dice-1.png');
+}
+.dice .back {
+  -webkit-transform: rotateX(180deg) translateZ(38px);
+          transform: rotateX(180deg) translateZ(38px);
+  background-image: url('../images/dice-2.png');
+}
+.dice .right {
+  -webkit-transform: rotateY(90deg) translateZ(38px);
+          transform: rotateY(90deg) translateZ(38px);
+  background-image: url('../images/dice-3.png');
+}
+.dice .left {
+  -webkit-transform: rotateY(-90deg) translateZ(38px);
+          transform: rotateY(-90deg) translateZ(38px);
+  background-image: url('../images/dice-4.png');
+}
+.dice .top {
+  -webkit-transform: rotateX(90deg) translateZ(38px);
+          transform: rotateX(90deg) translateZ(38px);
+  background-image: url('../images/dice-5.png');
+}
+.dice .bottom {
+  -webkit-transform: rotateX(-90deg) translateZ(38px);
+          transform: rotateX(-90deg) translateZ(38px);
+  background-image: url('../images/dice-6.png');
+}
+.dice.show-front {
+  -webkit-transform: translateZ(-40px) rotateY(0deg);
+          transform: translateZ(-40px) rotateY(0deg);
+}
+.dice.show-back {
+  -webkit-transform: translateZ(-40px) rotateX(-180deg);
+          transform: translateZ(-40px) rotateX(-180deg);
+}
+.dice.show-right {
+  -webkit-transform: translateZ(-40px) rotateY(-90deg);
+          transform: translateZ(-40px) rotateY(-90deg);
+}
+.dice.show-left {
+  -webkit-transform: translateZ(-40px) rotateY(90deg);
+          transform: translateZ(-40px) rotateY(90deg);
+}
+.dice.show-top {
+  -webkit-transform: translateZ(-40px) rotateX(-90deg);
+          transform: translateZ(-40px) rotateX(-90deg);
+}
+.dice.show-bottom {
+  -webkit-transform: translateZ(-40px) rotateX(90deg);
+          transform: translateZ(-40px) rotateX(90deg);
+}
+.dice.show-same {
+  -webkit-transform: translateZ(-40px) rotateX(360deg);
+          transform: translateZ(-40px) rotateX(360deg);
+}
+
+/*Extend bootstrap to support 5-column in a row*/
+.col-xs-15,
+.col-sm-15,
+.col-md-15,
+.col-lg-15 {
+    position: relative;
+    min-height: 1px;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+.col-md-15 {
+    width: 20%;
+    float: left;
+}
