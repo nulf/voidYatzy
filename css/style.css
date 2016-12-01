@@ -34,6 +34,7 @@ table {
     width: 100%;
     float: right;
     border: 10px;
+    table-layout: fixed;
 }
 
 .table div table h2 {

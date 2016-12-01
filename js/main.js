@@ -1,4 +1,41 @@
+/* Global Variables
+=================================== */
+var users, dices, scores;
 
+/* ScoreNames to the table.
+===================================*/
+var scoreName = ["Ettor","Tvår","Treor","Fyror","Femmor","Sexor","Summa","Bonus (50)","Par","Tvåpar","Triss","Fyrtal","Kåk","Liten stege","Stor stege","Yatzy","Chans","Summa"];
+
+/* Render scoreTable
+===================================*/
+function renderScoreTable() {
+	// Example users just to see if the render works
+	users = ["Pontus","Ulf","Linda","Sandra","Chrsitoffer"];
+	
+	var TablePlayers = $("<table><tr><th>Spelare</th>")
+	for( var i = 0 ; i < users.length ; i++ ) {
+		$(TablePlayers).find("tr").append('<th>'+ users[i] +'</th>');
+	}
+
+	for( var i = 0 ; i < scoreName.length ; i++ ) {
+		var newRow = $('<tr data-value="'+ i +'"><td>'+ scoreName[i] +'</td>');
+		for( j = 0 ; j < users.length ; j++ ) {
+			newRow.append('<td></td>');
+		}
+		TablePlayers.append(newRow);
+	};
+	$(TablePlayers).append('</tr></table>');
+
+
+	$(".scoreTable").append(TablePlayers);
+
+}
+
+/* DOM ready
+================================*/
+$(function() {
+	renderScoreTable();
+})
 
 
 // EXAMPLE FOR TURNING DICES 
