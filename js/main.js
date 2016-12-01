@@ -35,36 +35,59 @@ function renderScoreTable() {
 ================================*/
 $(function() {
 	renderScoreTable();
+
+	$("button").click(function() {
+		for( i = 0; i < 5 ; i++ ) {
+			var ran = Math.round(Math.random()*20) / 10 + 2;
+			$("[data-type=dice"+i+"]").attr("style","animation: spin "+ran+"s infinite linear;")
+			doScaledTimeout(i,ran*1000);
+		}
+	});
 })
 
+function setTime(i, sec) {
+	setTimeout(turn(i), sec);
+}
+
+function doScaledTimeout(i,ms) {
+  setTimeout(function() {
+    turn(i);
+  }, ms);
+}
 
 // EXAMPLE FOR TURNING DICES 
-function turn() {
+function turn(num) {
 	random = Math.floor(Math.random()*6)+1;
 	switch(random) {
 		case 1:
-			$("[data-type=dice]").removeClass();
-			$("[data-type=dice]").addClass('dice show-front');
+			$("[data-type=dice"+num+"]").removeClass();
+			$("[data-type=dice"+num+"]").removeAttr("style");
+			$("[data-type=dice"+num+"]").addClass('dice show-front');
 		break;
 		case 2:
-			$("[data-type=dice]").removeClass();
-			$("[data-type=dice]").addClass('dice show-back');
+			$("[data-type=dice"+num+"]").removeClass();
+			$("[data-type=dice"+num+"]").removeAttr("style");
+			$("[data-type=dice"+num+"]").addClass('dice show-back');
 		break;
 		case 3:
-			$("[data-type=dice]").removeClass();
-			$("[data-type=dice]").addClass('dice show-right');
+			$("[data-type=dice"+num+"]").removeClass();
+			$("[data-type=dice"+num+"]").removeAttr("style");
+			$("[data-type=dice"+num+"]").addClass('dice show-right');
 		break;
 		case 4:
-			$("[data-type=dice]").removeClass();
-			$("[data-type=dice]").addClass('dice show-left');
+			$("[data-type=dice"+num+"]").removeClass();
+			$("[data-type=dice"+num+"]").removeAttr("style");
+			$("[data-type=dice"+num+"]").addClass('dice show-left');
 		break;
 		case 5:
-			$("[data-type=dice]").removeClass();
-			$("[data-type=dice]").addClass('dice show-top');
+			$("[data-type=dice"+num+"]").removeClass();
+			$("[data-type=dice"+num+"]").removeAttr("style");
+			$("[data-type=dice"+num+"]").addClass('dice show-top');
 		break;
 		case 6:
-			$("[data-type=dice]").removeClass();
-			$("[data-type=dice]").addClass('dice show-bottom');
+			$("[data-type=dice"+num+"]").removeClass();
+			$("[data-type=dice"+num+"]").removeAttr("style");
+			$("[data-type=dice"+num+"]").addClass('dice show-bottom');
 		break;
 	}
 }
