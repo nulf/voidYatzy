@@ -39,7 +39,7 @@ $(function() {
 	$("button").click(function() {
 		for( i = 0; i < 5 ; i++ ) {
 			var ran = Math.round(Math.random()*20) / 10 + 2;
-			$("[data-type=dice"+i+"]").attr("style","animation: spin "+ran+"s infinite linear;")
+			$("[data-type=dice"+i+"]").attr("style","animation: spin "+(ran-0.01)+"s 1 linear;")
 			doScaledTimeout(i,ran*1000);
 		}
 	});
@@ -61,33 +61,33 @@ function turn(num) {
 	switch(random) {
 		case 1:
 			$("[data-type=dice"+num+"]").removeClass();
-			$("[data-type=dice"+num+"]").removeAttr("style");
 			$("[data-type=dice"+num+"]").addClass('dice show-front');
+			$("[data-type=dice"+num+"]").removeAttr("style");
 		break;
 		case 2:
 			$("[data-type=dice"+num+"]").removeClass();
-			$("[data-type=dice"+num+"]").removeAttr("style");
 			$("[data-type=dice"+num+"]").addClass('dice show-back');
+			$("[data-type=dice"+num+"]").removeAttr("style");
 		break;
 		case 3:
 			$("[data-type=dice"+num+"]").removeClass();
-			$("[data-type=dice"+num+"]").removeAttr("style");
 			$("[data-type=dice"+num+"]").addClass('dice show-right');
+			$("[data-type=dice"+num+"]").removeAttr("style");
 		break;
 		case 4:
 			$("[data-type=dice"+num+"]").removeClass();
-			$("[data-type=dice"+num+"]").removeAttr("style");
 			$("[data-type=dice"+num+"]").addClass('dice show-left');
+			$("[data-type=dice"+num+"]").removeAttr("style");
 		break;
 		case 5:
 			$("[data-type=dice"+num+"]").removeClass();
-			$("[data-type=dice"+num+"]").removeAttr("style");
 			$("[data-type=dice"+num+"]").addClass('dice show-top');
+			$("[data-type=dice"+num+"]").removeAttr("style");
 		break;
 		case 6:
 			$("[data-type=dice"+num+"]").removeClass();
-			$("[data-type=dice"+num+"]").removeAttr("style");
 			$("[data-type=dice"+num+"]").addClass('dice show-bottom');
+			$("[data-type=dice"+num+"]").removeAttr("style");
 		break;
 	}
 }
