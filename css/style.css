@@ -24,19 +24,14 @@ body{
 	border-width: 12px;
 	border-radius:  30px;
 	border-color: #3B2D1B;
-	height: 90vh;
-	margin-left: 15%;
 }
 
 /* scoreTable */
-.table-container{
-	height: 90vh;
-}
 
 table {
 	background-image: url(../images/paper-texture.jpg);
     border-collapse: collapse;
-    width: 375px;
+    width: 100%;
     float: right;
     border: 10px;
 }
