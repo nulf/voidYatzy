@@ -1,3 +1,4 @@
+
 /* scoreTable */
 table {
     border-collapse: collapse;
@@ -31,3 +32,19 @@ tr:nth-child(even) {
 /*
 
 /* end scoreTable /*
+=======
+.dice-container{
+	background-color: green;
+	height: 100vh;
+}
+
+.table-container{
+	background-color: red;
+	height: 90vh;
+	margin-top: 5vh;
+}
+
+body{
+	background-color: powderblue;
+}
+
