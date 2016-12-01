@@ -1,6 +1,6 @@
 /*Body BG*/
 body{
-	background-image: url(../images/body_bg.jpg);
+	background-image: url(../images/body_bg.png);
 	background-repeat: no-repeat;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
@@ -30,6 +30,11 @@ body{
 
 table {
 	background-image: url(../images/paper-texture.jpg);
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+  	-o-background-size: cover;
+  	background-size: cover;
+	background-repeat: repeat-y;
     border-collapse: collapse;
     width: 100%;
     float: right;
