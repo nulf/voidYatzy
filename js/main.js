@@ -69,7 +69,7 @@ function turn() {
 	}
 }
 
-// throwDice function, accepting one array as input(wich shows locked dices as well)
+// throwDice function, accepting one array as input(which shows locked dices as well)
 // Randomizing new value for dices that arent locked
 function throwDice(dices) {
 
