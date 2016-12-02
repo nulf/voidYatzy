@@ -7,12 +7,19 @@ body{
   	-o-background-size: cover;
   	background-size: cover;
 }
+/*Responsive images*/
+img {
+	width: 100%;
+}
 
 /*Header style*/
+header {
+	margin: 0 auto;
+	max-width: 1000px;
+}
 #logo{
+	margin: 0 auto;
 	display: block;
-	margin-right: auto;
-	margin-left: auto;
 	padding: 15px;
 }
 
