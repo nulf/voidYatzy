@@ -1,6 +1,6 @@
 /* Global Variables
 =================================== */
-var users, dices = [], scores;
+var users, dices = [0, 0, 0, 0, 0], scores;
 
 /* ScoreNames to the table.
 ===================================*/
@@ -36,12 +36,9 @@ function renderScoreTable() {
 $(function() {
 	renderScoreTable();
 
-	$("button").click(function() {
-		for( i = 0; i < 5 ; i++ ) {
-			var ran = Math.round(Math.random()*20) / 10 + 2;
-			$("[data-type=dice"+i+"]").attr("style","animation: spin "+ran+"s 1 linear;")
-			doScaledTimeout(i,Math.floor(ran*1001));
-		}
+	// Listen for .throw-dice button-click
+	$(".throw-dice").click(function() {
+		throwDice(dices);
 	});
 })
 
@@ -49,16 +46,15 @@ function setTime(i, sec) {
 	setTimeout(turn(i), sec);
 }
 
-function doScaledTimeout(i,ms) {
+function doScaledTimeout(i, ms, diceValue) {
   setTimeout(function() {
-    turn(i);
+    turn(i, diceValue);
   }, ms);
 }
 
 // EXAMPLE FOR TURNING DICES 
-function turn(num) {
-	random = Math.floor(Math.random()*6)+1;
-	switch(random) {
+function turn(num, diceValue) {
+	switch(diceValue) {
 		case 1:
 			$("[data-type=dice"+num+"]").removeClass();
 			$("[data-type=dice"+num+"]").addClass('dice show-front');
@@ -98,6 +94,11 @@ function throwDice(dices) {
 
 	// Loop through each item in "dices", if it's a number give it a random value(1-6)
 	dices.forEach(function(dice, index) {
-		if(typeof dice === 'number') dices[index] = Math.floor(Math.random() * 6) + 1;
+		if(typeof dice === 'number') { 
+			dices[index] = random = Math.floor(Math.random() * 6) + 1;
+			var ran = Math.round(Math.random()*20) / 10 + 2;
+			$("[data-type=dice" + index + "]").attr("style", "animation: spin " + ran + "s 1 linear;")
+			doScaledTimeout(index, Math.floor(ran * 1001), random);
+		}
 	});
 }
