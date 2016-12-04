@@ -2,13 +2,9 @@
   width: 80px;
   height: 80px;
   position: relative;
+  z-index: 999;
   -webkit-perspective: 1000px;
           perspective: 1000px;
-  z-index: 999;
-  -webkit-transition: -webkit-transform 0.2s ease 0;
-  transition: -webkit-transform 0.2s ease 0;
-  transition: transform 0.2s ease 0;
-  transition: transform 0.2s ease 0, -webkit-transform 0.2s ease 0;
 }
 .dice {
   width: 100%;
@@ -20,6 +16,7 @@
   transition: -webkit-transform 0.5s;
   transition: transform 0.5s;
   transition: transform 0.5s, -webkit-transform 1s;
+
 }
 .dice figure {
   width: 78px;
@@ -36,62 +33,68 @@
   -ms-user-select: none;
 }
 .dice .front {
-  -webkit-transform: rotateY(0deg) translateZ(38px);
-          transform: rotateY(0deg) translateZ(38px);
+  -webkit-transform: rotateY(0deg) translateZ(39px);
+          transform: rotateY(0deg) translateZ(39px);
   background-image: url('../images/dice-1.png');
 }
 .dice .back {
-  -webkit-transform: rotateX(180deg) translateZ(38px);
-          transform: rotateX(180deg) translateZ(38px);
+  -webkit-transform: rotateX(180deg) translateZ(39px);
+          transform: rotateX(180deg) translateZ(39px);
   background-image: url('../images/dice-2.png');
 }
 .dice .right {
-  -webkit-transform: rotateY(90deg) translateZ(38px);
-          transform: rotateY(90deg) translateZ(38px);
+  -webkit-transform: rotateY(90deg) translateZ(39px);
+          transform: rotateY(90deg) translateZ(39px);
   background-image: url('../images/dice-3.png');
 }
 .dice .left {
-  -webkit-transform: rotateY(-90deg) translateZ(38px);
-          transform: rotateY(-90deg) translateZ(38px);
+  -webkit-transform: rotateY(-90deg) translateZ(39px);
+          transform: rotateY(-90deg) translateZ(39px);
   background-image: url('../images/dice-4.png');
 }
 .dice .top {
-  -webkit-transform: rotateX(90deg) translateZ(38px);
-          transform: rotateX(90deg) translateZ(38px);
+  -webkit-transform: rotateX(90deg) translateZ(39px);
+          transform: rotateX(90deg) translateZ(39px);
   background-image: url('../images/dice-5.png');
 }
 .dice .bottom {
-  -webkit-transform: rotateX(-90deg) translateZ(38px);
-          transform: rotateX(-90deg) translateZ(38px);
+  -webkit-transform: rotateX(-90deg) translateZ(39px);
+          transform: rotateX(-90deg) translateZ(39px);
   background-image: url('../images/dice-6.png');
 }
 .dice.show-front {
-  -webkit-transform: translateZ(-40px) rotateY(0deg);
-          transform: translateZ(-40px) rotateY(0deg);
+  -webkit-transform: translateZ(-40px) rotateY(5deg);
+          transform: translateZ(-40px) rotateY(-10deg) rotateX(-10deg);
 }
 .dice.show-back {
   -webkit-transform: translateZ(-40px) rotateX(-180deg);
-          transform: translateZ(-40px) rotateX(-180deg);
+          transform: translateZ(-40px) rotateX(-190deg) rotateY(+10deg);
 }
 .dice.show-right {
   -webkit-transform: translateZ(-40px) rotateY(-90deg);
-          transform: translateZ(-40px) rotateY(-90deg);
+          transform: translateZ(-40px) rotateY(-100deg) rotateZ(10deg);
 }
 .dice.show-left {
   -webkit-transform: translateZ(-40px) rotateY(90deg);
-          transform: translateZ(-40px) rotateY(90deg);
+          transform: translateZ(-40px) rotateY(80deg) rotateZ(-10deg);
 }
 .dice.show-top {
   -webkit-transform: translateZ(-40px) rotateX(-90deg);
-          transform: translateZ(-40px) rotateX(-90deg);
+          transform: translateZ(-40px) rotateX(-100deg) rotateZ(-10deg);
 }
 .dice.show-bottom {
   -webkit-transform: translateZ(-40px) rotateX(90deg);
-          transform: translateZ(-40px) rotateX(90deg);
+          transform: translateZ(-40px) rotateX(80deg) rotateZ(10deg);
 }
-.dice.show-same {
-  -webkit-transform: translateZ(-40px) rotateX(360deg);
-          transform: translateZ(-40px) rotateX(360deg);
+
+@keyframes spin {
+    0% { transform: translateZ(-40px) rotateX(0deg) rotateY(0deg) rotateZ(0deg); }
+    16% { transform: translateZ(-40px) rotateX(180deg) rotateY(180deg) rotateZ(0deg); }
+    33% { transform: translateZ(-40px) rotateX(360deg) rotateY(90deg) rotateZ(180deg); }
+    50% { transform: translateZ(-40px) rotateX(360deg) rotateY(360deg) rotateZ(360deg); }
+    66% { transform: translateZ(-40px) rotateX(180deg) rotateY(360deg) rotateZ(270deg); }
+    83% { transform: translateZ(-40px) rotateX(270deg) rotateY(180deg) rotateZ(180deg); }
+    100% { transform: translateZ(-40px) rotateX(360deg) rotateY(360deg) rotateZ(360deg); }
 }
 
 /*Extend bootstrap to support 5-column in a row*/
