@@ -17,13 +17,24 @@ var scoreName = ["Ettor","Tvår","Treor","Fyror","Femmor","Sexor","Summa","Bonus
 ===================================*/
 function renderScoreTable() {
 	
-	var TablePlayers = $("<table id='scoreTbl'><tr><th>Spelare</th>")
+	var TablePlayers = $('<table class="table table-condensed" id="scoreTbl"><tr><th style="width: 100px;">Spelare</th>')
 	for( var i = 0 ; i < users.length ; i++ ) {
-		$(TablePlayers).find("tr").append('<th>'+ users[i].name +'</th>');
+		// if more than 4 players and usernames are long, shorten it
+		if(users.length > 3 && users[i].name.length > 7) {
+			var PlayerName = users[i].name.substr(0,8)+'..';
+		} else {
+			var PlayerName = users[i].name;
+		}
+		$(TablePlayers).find("tr").append('<th style="text-align: center;">'+ PlayerName +'</th>');
 	}
 
 	for( var i = 0 ; i < scoreName.length ; i++ ) {
-		var newRow = $('<tr data-value="'+ i +'"><td>'+ scoreName[i] +'</td>');
+		if(i == 5 || i == 6 || i == 7 || i == 16) {
+			var borderStyle = 'style="border-bottom: 3px solid #000;"';
+		} else {
+			var borderStyle = '';
+		}
+		var newRow = $('<tr data-value="'+ i +'"'+borderStyle+'><th>'+ scoreName[i] +'</th>');
 		for( j = 0 ; j < users.length ; j++ ) {
 			newRow.append('<td></td>');
 		}
@@ -92,7 +103,7 @@ $(function() {
 	==================================*/
 
 	$(document).on("click",".btn-addPlayer",function showData(){
-		if(users.length==5){
+		if(users.length == 5){
 			return;
 		}
 		var pName=$(".form-control").val();

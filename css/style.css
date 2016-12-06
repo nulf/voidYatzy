@@ -44,10 +44,8 @@ table {
   	-o-background-size: cover;
   	background-size: cover;
 	background-repeat: repeat-y;
-    border-collapse: collapse;
     width: 100%;
-    float: right;
-    border: 10px;
+    table-layout: fixed;
 }
 
 .table div table h2 {
@@ -60,7 +58,7 @@ td:hover, th:hover {
 }
 
 table, td, th {
-    border: 2.3px solid black;
+    border: 1px solid black;
 }
 
 th, td {
