@@ -8,7 +8,9 @@
 	<script src="js/lib/bootstrap.min.js"></script>
 
 	<!-- Javscript files -->
+
 	<script src="js/rules.js"></script>
+  <script src="js/klasser/player.js"></script>
 	<script src="js/main.js"></script>
 
 	<!-- Lib CSS files -->
@@ -19,8 +21,41 @@
 	<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+
 	<header><img id="logo" src="images/wood-burn-text-test.png"></header>
 	<main class="container">
+
+
+    <div class="modal fade myModal" tabindex="-1" role="dialog" data-show="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            
+            <h4 class="modal-title">Välkomen till Yatzy</h4>
+          </div>
+          <div class="modal-body">
+
+
+            <p>Lägg till spelare:&hellip;</p>
+            <ol></ol>
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Skriv ditt namn här!...">
+              <span class="input-group-btn">
+                <button class="btn btn-addPlayer btn-success" type="button">+</button>
+              </span>
+            </div>
+           
+
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" >Rensa spelare</button>
+            <button type="button" class="btn btn-primary">Starta spelet</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
 		<div class="row">
 			<div class="col-md-7 col-xs-12">
 				<div class="dice-container">
@@ -110,6 +145,7 @@
 	</div>
 </div>
  -->
+
 	</main>
 	<footer></footer>
 </body>

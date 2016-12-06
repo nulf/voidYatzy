@@ -1,6 +1,8 @@
 /* Global Variables
 =================================== */
-var users, dices = [0, 0, 0, 0, 0], scores;
+
+var users=[], dices = [0, 0, 0, 0, 0], scores;
+
 
 /* ScoreNames to the table.
 ===================================*/
@@ -10,7 +12,7 @@ var scoreName = ["Ettor","Tvår","Treor","Fyror","Femmor","Sexor","Summa","Bonus
 ===================================*/
 function renderScoreTable() {
 	// Example users just to see if the render works
-	users = ["Pontus","Ulf","Linda","Sandra","Chrsitoffer"];
+	
 	
 	var TablePlayers = $("<table id='scoreTbl'><tr><th>Spelare</th>")
 	for( var i = 0 ; i < users.length ; i++ ) {
@@ -34,7 +36,6 @@ function renderScoreTable() {
 /* DOM ready
 ================================*/
 $(function() {
-	renderScoreTable();
 
 	// Listen for .throw-dice button-click
 	$(".throw-dice").click(function() {
@@ -67,7 +68,50 @@ $(function() {
 	            }
 	        }
 	});
+
+	$(".myModal").modal({
+		backdrop: "static",
+		show: true
+	})
+	
+
+
+	/* enter player name and show as list
+	==================================*/
+
+	$(document).on("click",".btn-addPlayer",function showData(){
+		if(users.length==5){
+			return;
+		}
+		var pName=$(".form-control").val();
+		$("ol").append('<li>'+pName+'</li>');
+		$('.form-control').val('');
+
+		users.push(new Player(pName,users.length))
+		console.log(users);
+	});
+
+	$('.form-control').keypress(function(e){
+		var key= e.which;
+		if (key == 13) {
+			$('.btn-addPlayer').click();
+		}
+	})
+
+	
+
+
+	/* remove players from list
+	==================================*/
+	$(document).on("click",".btn-default",function(){
+		users.pop();
+		$("li:last").remove();
+	});
+
 })
+
+	
+
 
 function setTime(i, sec) {
 	setTimeout(turn(i), sec);
