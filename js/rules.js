@@ -62,3 +62,19 @@ function checkTableDice(row, column) {
 
     return score;
 }
+
+function threeOfAKind(dices) {
+    var diceArrayCopy = dices;
+    diceArrayCopy.sort();
+    diceArrayCopy = diceArrayCopy.join("");
+
+    console.log(diceArrayCopy);
+    console.log(regexPattern);
+
+    if(sumArray = /(.)\1{2}/.exec(diceArrayCopy)) {
+        var sum = sumArray[0];
+        return (Number(sum[0]) + Number(sum[1]) + Number(sum[2]));
+    }
+
+    return 0;
+}
