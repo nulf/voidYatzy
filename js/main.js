@@ -1,8 +1,13 @@
+/* ANVÄND DENNA FÖR ATT UNDVIKA POPUP RUTA */
+var DEMO = true;
+
 /* Global Variables
 =================================== */
-
 var users=[], dices = [0, 0, 0, 0, 0], scores;
 
+if(DEMO) {
+	users = [{"name":"Pontus"},{"name":"Linn"},{"name":"Sandra"},{"name":"Ulf"},{"name":"Christoffer"}]
+}
 
 /* ScoreNames to the table.
 ===================================*/
@@ -11,12 +16,10 @@ var scoreName = ["Ettor","Tvår","Treor","Fyror","Femmor","Sexor","Summa","Bonus
 /* Render scoreTable
 ===================================*/
 function renderScoreTable() {
-	// Example users just to see if the render works
-	
 	
 	var TablePlayers = $("<table id='scoreTbl'><tr><th>Spelare</th>")
 	for( var i = 0 ; i < users.length ; i++ ) {
-		$(TablePlayers).find("tr").append('<th>'+ users[i] +'</th>');
+		$(TablePlayers).find("tr").append('<th>'+ users[i].name +'</th>');
 	}
 
 	for( var i = 0 ; i < scoreName.length ; i++ ) {
@@ -69,10 +72,19 @@ $(function() {
 	        }
 	});
 
-	$(".myModal").modal({
-		backdrop: "static",
-		show: true
-	})
+	if(DEMO) {
+		$(".myModal").modal({
+			backdrop: "static",
+			show: false
+		})
+		renderScoreTable()
+	} else {
+		// Autoshow modal on load
+		$(".myModal").modal({
+			backdrop: "static",
+			show: true
+		})
+	}
 	
 
 
