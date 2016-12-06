@@ -1,29 +1,80 @@
 
-// Change later, just for debug atm
-// This function will check if the table(i,j) is correct and returns the score
-// if something is not correct the fuction will return -1;
+// Master rule function lib
+var handRules = {
+    ones: function (dices) { // Ones
+        var cScore = 0; // temp var to hold the score while we count
+        for (var i = 0; i < dices.length; i++) {
+            if (dices[i] === 1) cScore += 1;
+        }
+        return (cScore);
+    },
+
+    twos: function (dices) { // Twos
+    var cScore = 0;
+    for (var i = 0; i < dices.length; i++) {
+        if (dices[i] === 2) cScore += 2;
+    }
+    return (cScore);
+    },
+
+    threes: function (dices) { // Threes
+        var cScore = 0;
+        for (var i = 0; i < dices.length; i++) {
+            if (dices[i] === 3) cScore += 3;
+        }
+        return (cScore);
+    },
+
+    fours: function (dices) { // Fours
+        var cScore = 0;
+        for (var i = 0; i < dices.length; i++) {
+            if (dices[i] === 4) cScore += 4;
+        }
+        return (cScore);
+    },
+
+    fives: function (dices) { // Fives
+        var cScore = 0;
+        for (var i = 0; i < dices.length; i++) {
+            if (dices[i] === 5) cScore += 5;
+        }
+        return (cScore);
+    },
+
+    sixs: function (dices) { // Sixs
+        var cScore = 0;
+        for (var i = 0; i < dices.length; i++) {
+            if (dices[i] === 6) cScore += 6;
+        }
+        return (cScore);
+    },
+
+    threeOfAKind: function (dices) {
+        var diceArrayCopy = dices;
+        diceArrayCopy.sort();
+        diceArrayCopy = diceArrayCopy.join("");
+        if(sumArray = /(.)\1{2}/.exec(diceArrayCopy)) {
+            var sum = sumArray[0];
+            return (Number(sum[0]) + Number(sum[1]) + Number(sum[2]));
+        }
+
+        return 0;
+    },
+
+    yatzy: function (dices) {
+        for (var i = 1; i < dices.length; i++) {
+            if (dices[0] != dices[i]) {
+                return 0;
+            }
+        }
+        return 50;
+    }
+};
+
+
+/*
 function checkTableDice(row, column) {
     var score = 0;
-
-    switch (row) {
-        case 1:
-            for (var i = 0; i < dices.length; i++) if (dices[i] === 1) score += 1;
-            break;
-        case 2:
-            for (var i = 0; i < dices.length; i++) if (dices[i] === 2) score += 2;
-            break;
-        case 3:
-            for (var i = 0; i < dices.length; i++) if (dices[i] === 3) score += 3;
-            break;
-        case 4:
-            for (var i = 0; i < dices.length; i++) if (dices[i] === 4) score += 4;
-            break;
-        case 5:
-            for (var i = 0; i < dices.length; i++) if (dices[i] === 5) score += 5;
-            break;
-        case 6:
-            for (var i = 0; i < dices.length; i++) if (dices[i] === 6) score += 6;
-            break;
         case 9: // Par, compare and selects the highest par combo to input in the scoretable
             var values = [0, 0, 0, 0, 0, 0]; // Temp array to hold 6 numbers
             var par1 = 0; // variable for pair number 1
@@ -57,20 +108,5 @@ function checkTableDice(row, column) {
         default: score = -1;
             break;
     }
-
-
-
     return score;
-}
-
-function threeOfAKind(dices) {
-    var diceArrayCopy = dices;
-    diceArrayCopy.sort();
-    diceArrayCopy = diceArrayCopy.join("");
-    if(sumArray = /(.)\1{2}/.exec(diceArrayCopy)) {
-        var sum = sumArray[0];
-        return (Number(sum[0]) + Number(sum[1]) + Number(sum[2]));
-    }
-
-    return 0;
-}
+}*/
