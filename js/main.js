@@ -131,7 +131,7 @@ $(function() {
 
 	/* remove players from list
 	==================================*/
-	$(document).on("click",".btn-default",function(){
+	$(document).on("click",".btn-RemovePlayer",function(){
 		users.pop();
 		$("li:last").remove();
 	});
