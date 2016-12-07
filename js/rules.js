@@ -49,15 +49,69 @@ var handRules = {
         return (cScore);
     },
 
+    pair: function (dices) {
+        var diceArrayCopy = dices;
+        diceArrayCopy.sort();
+        diceArrayCopy = diceArrayCopy.join("");
+        if(sumArray = /(.)\1{1}/.exec(diceArrayCopy)) {
+            var sum = sumArray[0];
+            pair1 = (Number(sum[0]) + Number(sum[0]));
+            console.log(pair1);
+            /*diceArrayCopy*/
+
+            return (Number(sum[0]) + Number(sum[1]));
+        }
+        return 0;
+    },
+
     threeOfAKind: function (dices) {
         var diceArrayCopy = dices;
         diceArrayCopy.sort();
         diceArrayCopy = diceArrayCopy.join("");
         if(sumArray = /(.)\1{2}/.exec(diceArrayCopy)) {
-            var sum = sumArray[0];
-            return (Number(sum[0]) + Number(sum[1]) + Number(sum[2]));
+            return (dices[0] + dices[1] + dices[2] + dices[3] + dices[4]);
         }
 
+        return 0;
+    },
+
+    fourOfAKind: function (dices) {
+        var diceArrayCopy = dices;
+        diceArrayCopy.sort();
+        diceArrayCopy = diceArrayCopy.join("");
+        if(sumArray = /(.)\1{3}/.exec(diceArrayCopy)) {
+            return (dices[0] + dices[1] + dices[2] + dices[3] + dices[4]);
+        }
+        return 0;
+    },
+
+    fullHouse: function (dices) {
+        var diceArrayCopy = dices;
+        diceArrayCopy.sort();
+        diceArrayCopy = diceArrayCopy.join("");
+        if(sumArray = /(.)\1{2}(.)\2|(.)\3(.)\4{2}/.exec(diceArrayCopy)) {
+            return (25);
+        }
+        return 0;
+    },
+
+    smallStraight: function (dices) {
+        var diceArrayCopy = dices;
+        diceArrayCopy.sort();
+        diceArrayCopy = diceArrayCopy.join("");
+        if(sumArray = /12345/.exec(diceArrayCopy)) {
+            return (15);
+        }
+        return 0;
+    },
+
+    bigStraight: function (dices) {
+        var diceArrayCopy = dices;
+        diceArrayCopy.sort();
+        diceArrayCopy = diceArrayCopy.join("");
+        if(sumArray = /23456/.exec(diceArrayCopy)) {
+            return (20);
+        }
         return 0;
     },
 
@@ -110,14 +164,3 @@ function checkTableDice(row, column) {
     }
     return score;
 }*/
-
-function threeOfAKind(dices) {
-    var diceArrayCopy = dices;
-    diceArrayCopy.sort();
-    diceArrayCopy = diceArrayCopy.join("");
-    if(sumArray = /(.)\1{2}/.exec(diceArrayCopy)) {
-        var sum = sumArray[0];
-        return (Number(sum[0]) + Number(sum[1]) + Number(sum[2]));
-    }
-    return 0;
-}
