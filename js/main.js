@@ -192,3 +192,17 @@ function throwDice(dices) {
 		}
 	});
 }
+
+function newRound() {
+	dices = [0,0,0,0,0];
+
+	if (activePlayer === users.length -1 || activePlayer == undefined)
+	{
+		activePlayer = 0;
+	}
+	else
+	{
+		activePlayer++;
+	}
+	renderScoreTable();
+}
