@@ -55,11 +55,34 @@ var handRules = {
         diceArrayCopy = diceArrayCopy.join("");
         if(sumArray = /(.)\1{1}/.exec(diceArrayCopy)) {
             var sum = sumArray[0];
-            pair1 = (Number(sum[0]) + Number(sum[0]));
-            console.log(pair1);
-            /*diceArrayCopy*/
+            pair1 = (Number(sum[0]) + Number(sum[1]));
+            diceArrayCopy = diceArrayCopy.replace(sumArray[0], "");
+            if(sumArray2 = /(.)\1{1}/.exec(diceArrayCopy)) {
+                var sum2 = sumArray2[0];
+                pair2 = (Number(sum2[0]) + Number(sum2[1]));
+                if(pair1 < pair2) {
+                    return pair2;
+                }
+            }
 
-            return (Number(sum[0]) + Number(sum[1]));
+            return (pair1);
+        }
+        return 0;
+    },
+
+    twoPair: function (dices) {
+        var diceArrayCopy = dices;
+        diceArrayCopy.sort();
+        diceArrayCopy = diceArrayCopy.join("");
+        if(sumArray = /(.)\1{1}/.exec(diceArrayCopy)) {
+            var sum = sumArray[0];
+            pair1 = (Number(sum[0]) + Number(sum[1]));
+            diceArrayCopy = diceArrayCopy.replace(sumArray[0], "");
+            if(sumArray2 = /(.)\1{1}/.exec(diceArrayCopy)) {
+                var sum2 = sumArray2[0];
+                pair2 = (Number(sum2[0]) + Number(sum2[1]));
+                return Number(pair1) + Number(pair2);
+            }
         }
         return 0;
     },
