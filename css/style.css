@@ -48,23 +48,21 @@ table {
     table-layout: fixed;
 }
 
-.table div table h2 {
-	float: right;
-}
-
-td:hover, th:hover {
+td:hover {
 	cursor: pointer;
 	background-color: lime;
 }
 
-table, td, th {
+td, th {
     border: 1px solid black;
-}
-
-th, td {
     text-align: left;
     padding: 4px;
 }
+
+.scoreTable {
+	border-top: 1px solid #000;
+}
+
 .myModal{
 	float: center;
 }
