@@ -3,7 +3,7 @@ var DEMO = true;
 
 /* Global Variables
 =================================== */
-var users=[], dices = [0, 0, 0, 0, 0], scores;
+var users=[], dices = [0, 0, 0, 0, 0], scores, TimeOut;
 
 if(DEMO) {
 	users = [{"name":"Pontus"},{"name":"Linn"},{"name":"Sandra"},{"name":"Ulf"},{"name":"Christoffer"}]
@@ -11,7 +11,7 @@ if(DEMO) {
 
 /* ScoreNames to the table.
 ===================================*/
-var scoreName = ["Ettor","Tvår","Treor","Fyror","Femmor","Sexor","Summa","Bonus (50)","Par","Tvåpar","Triss","Fyrtal","Kåk","Liten stege","Stor stege","Yatzy","Chans","Summa"];
+var scoreName = ["Ettor","Tvår","Treor","Fyror","Femmor","Sexor","Summa","Bonus (50)","Par","Tvåpar","Triss","Fyrtal","Kåk","Liten stege","Stor stege","Chans","Yatzy","Summa"];
 
 /* Render scoreTable
 ===================================*/
@@ -53,7 +53,9 @@ $(function() {
 
 	// Listen for .throw-dice button-click
 	$(".throw-dice").click(function() {
-		throwDice(dices);
+		if (! window.activeTimers() ) {
+			throwDice(dices);
+		}
 	});
 
     /*Clickable table
@@ -133,17 +135,11 @@ $(function() {
 
 })
 
-	
-
-
-function setTime(i, sec) {
-	setTimeout(turn(i), sec);
-}
 
 function doScaledTimeout(i, ms, diceValue) {
-  setTimeout(function() {
-    turn(i, diceValue);
-  }, ms);
+	setTimeout(function() {
+		turn(i, diceValue);
+	}, ms);
 }
 
 // EXAMPLE FOR TURNING DICES 
