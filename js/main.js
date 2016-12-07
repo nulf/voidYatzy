@@ -1,5 +1,5 @@
 /* ANVÄND DENNA FÖR ATT UNDVIKA POPUP RUTA */
-var DEMO = false;
+var DEMO = true;
 
 /* Global Variables
 =================================== */
@@ -21,8 +21,8 @@ function renderScoreTable() {
 	var TablePlayers = $('<table class="table table-condensed" id="scoreTbl"><tr><th style="width: 100px;">Spelare</th>')
 	for( var i = 0 ; i < users.length ; i++ ) {
 		// if more than 4 players and usernames are long, shorten it
-		if(users.length > 3 && users[i].name.length > 7) {
-			PlayerName = users[i].name.substr(0,8)+'..';
+		if( users[i].name.length > 5) {
+			PlayerName = users[i].name.substr(0,5)+'..';
 		} else {
 			PlayerName = users[i].name;
 		}
