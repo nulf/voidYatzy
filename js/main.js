@@ -1,9 +1,9 @@
 /* ANVÄND DENNA FÖR ATT UNDVIKA POPUP RUTA */
-var DEMO = true;
+var DEMO = false;
 
 /* Global Variables
 =================================== */
-var users=[], dices = [0, 0, 0, 0, 0], scores, TimeOut;
+var users=[], dices = [0, 0, 0, 0, 0], scores, activePlayer;
 
 if(DEMO) {
 	users = [{"name":"Pontus"},{"name":"Linn"},{"name":"Sandra"},{"name":"Ulf"},{"name":"Christoffer"}]
@@ -16,16 +16,22 @@ var scoreName = ["Ettor","Tvår","Treor","Fyror","Femmor","Sexor","Summa","Bonus
 /* Render scoreTable
 ===================================*/
 function renderScoreTable() {
-	
+	var PlayerName, PlayerNow;
+	$(".scoreTable").html('');
 	var TablePlayers = $('<table class="table table-condensed" id="scoreTbl"><tr><th style="width: 100px;">Spelare</th>')
 	for( var i = 0 ; i < users.length ; i++ ) {
 		// if more than 4 players and usernames are long, shorten it
 		if(users.length > 3 && users[i].name.length > 7) {
-			var PlayerName = users[i].name.substr(0,8)+'..';
+			PlayerName = users[i].name.substr(0,8)+'..';
 		} else {
-			var PlayerName = users[i].name;
+			PlayerName = users[i].name;
 		}
-		$(TablePlayers).find("tr").append('<th style="text-align: center;">'+ PlayerName +'</th>');
+		if(i == activePlayer) {
+			PlayerNow = "background-color: #ccc;";
+		} else {
+			PlayerNow = "";
+		}
+		$(TablePlayers).find("tr").append('<th style="text-align: center; '+PlayerNow+'">'+ PlayerName +'</th>');
 	}
 
 	for( var i = 0 ; i < scoreName.length ; i++ ) {
@@ -123,14 +129,19 @@ $(function() {
 		}
 	})
 
-	
-
-
 	/* remove players from list
 	==================================*/
 	$(document).on("click",".btn-default",function(){
 		users.pop();
 		$("li:last").remove();
+	});
+
+	/* Start round
+	==========================*/
+	$(".btn-StartGame").click(function() {
+		if(users.length > 0)
+			$(".myModal").modal("toggle");
+			newRound();
 	});
 
 })
