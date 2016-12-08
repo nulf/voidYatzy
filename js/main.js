@@ -6,7 +6,7 @@ var DEMO = true;
 var users=[], dices = [0, 0, 0, 0, 0], scores, activePlayer;
 
 if(DEMO) {
-	users = [{"name":"Pontus"},{"name":"Linn"},{"name":"Sandra"},{"name":"Ulf"},{"name":"Christoffer"}]
+    users = [{"name":"Pontus", "id":0},{"name":"Linn", "id":1},{"name":"Sandra", "id":2},{"name":"Ulf", "id":3},{"name":"Christoffer", "id":4}]
 }
 
 /* ScoreNames to the table.
@@ -42,7 +42,7 @@ function renderScoreTable() {
 		}
 		var newRow = $('<tr data-value="'+ i +'"'+borderStyle+'><th>'+ scoreName[i] +'</th>');
 		for( j = 0 ; j < users.length ; j++ ) {
-			newRow.append('<td></td>');
+			newRow.append('<td data-user="'+users[j].id+'" data-scorename="'+ i +'"></td>');
 		}
 		TablePlayers.append(newRow);
 	};
@@ -64,31 +64,16 @@ $(function() {
 		}
 	});
 
-    /*Clickable table
-    ================================*/
-	$('#scoreTbl tbody tr').on('click', 'td', function () {
-	    var Tbl = document.getElementById('scoreTbl');
-           
-	        for (var i = 0; i < Tbl.rows.length; i++) {
-	            for (var j = 0; j < Tbl.rows[i].cells.length; j++) {
-	                Tbl.rows[i].cells[j].onclick = (function (i, j) {
+    //Clickable point table
+     
+    // Lokalisera vilken rad och column som klickas (lås activecolumn till activePlayer)
+	$(document).on('click', 'td', function () {
 
-	                    return function () {
+	    var player = $(this).data('user');
+	    var scorename = $(this).data('scorename');
 
-	                        if ( $(this).html() == "" ) {
+	    console.log("LOG this:", player, scorename);
 
-	                            var score = checkTableDice(i, j)
-
-	                            if (score !== -1) {
-	                                // if we're here: everything is okay and we can change the tablecell HTML to score calc
-	                                // Still need to input score to pointTable.json
-	                                $(this).html(score);
-	                            }
-	                        }
-	                    }
-	                }(i, j));
-	            }
-	        }
 	});
 
 
