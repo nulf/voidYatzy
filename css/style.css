@@ -78,8 +78,19 @@ tr:nth-child(even) {
 .modal-content
 {
 	background-color: #cce6ff;
+	padding:15px;
 }
 
 h4{
 	font-weight: bold;
+}
+
+.btn-Rules:hover { 
+    background-color: #cce6ff;
+}
+
+.btn-Rules{
+	height: 50px;
+    width: 50px;
+    float: right;
 }

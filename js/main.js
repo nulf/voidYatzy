@@ -91,6 +91,7 @@ $(function() {
 	        }
 	});
 
+
 	if(DEMO) {
 		$(".myModal").modal({
 			backdrop: "static",
@@ -104,6 +105,12 @@ $(function() {
 			show: true
 		})
 	}
+
+	$(".myModal").modal({
+		backdrop: "static",
+		show: false
+	})
+
 	
 
 

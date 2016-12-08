@@ -22,9 +22,13 @@
 </head>
 <body>
 
-	<header><img id="logo" src="images/wood-burn-text-test.png"></header>
+	<header>
+		<div class="Rules">
+     	<button type="submit" class="btn-Rules" style="height:50px; width:50px" data-toggle="modal" data-target=".bs-example-modal-lg"><img src="images/restart-button.png"></button>
+		</div>
+		<img id="logo" src="images/wood-burn-text-test.png">
+	</header>
 	<main class="container">
-
 
     <div class="modal fade myModal" tabindex="-1" role="dialog" data-show="true">
       <div class="modal-dialog" role="document">
@@ -50,6 +54,41 @@
         </div>
       </div>
     </div>
+
+	
+
+	<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+	  <div class="modal-dialog modal-lg" role="document">
+	    <div class="modal-content">
+	    	<div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h2><b>Yatzy regler</b></h2>
+	      </div>
+	      	<div class="modal-body">
+			    	
+			      <p>I klassisk Yatzy används 5 tärningar, deltagarantalet är obegränsat och den som har uppnått den högsta poängsumman i slutet vinner.</p>
+						<h4>Spelets gång</h4>
+						<p>Alla slår varsin tärning. Spelaren som slår högst får börja, sedan roterar man medurs. Varje gång det blir en spelares tur har han rätt till högst 3 tärningskast. För var slag avgör spelaren vilka tärningar denne vill spara till nästa kast och vilka tärningar denne vill kasta om. Efter alla kast förs poängsumman in intill en av rubrikerna. Ordningen på protokollet behöver ej följas.</p>
+						<h4>Bonus</h4>
+						<p>Protokollsrubrikerna får endast användas en gång. Om poängsumma är på 63 poäng eller mer på protokollets övre halva utgår en bonus om 50 poäng. Maximal summa på övre halvan är 105.</p>
+						<h4>Nedre delen av protokollet</h4>
+						<ul>
+							<li><b>ETT PAR:</b> Ex. 5-3-3-2-1, 2 st 3:or</li>
+							<li><b>TVÅ PAR:</b> Ex. 5-3-3-4-4, 2 st 3:or, 2 st 4:or</li>
+							<li><b>TRETAL:</b> Ex. 5-3-3-3-2, 3 st 3:or</li>
+							<li><b>FYRTAL:</b> Ex. 5-4-4-4-4, 4 st 4:or</li>
+							<li><b>LITEN STRAIGHT:</b> Ex. 1-2-3-4-5</li>
+							<li><b>STOR STRAIGHT:</b> Ex. 2-3-4-5-6</li>
+							<li><b>KÅK:</b> Ex.3-5-5-3-3, 3 st 3:or, 2 st 5:or</li>
+							<li><b>CHANS:</b> Alla de fem tärningarnas ögontal räknas och summan av dessa förs in på protokollet. Den här rubriken används när ingen annan lämplig rubrik är ledig.</li>
+							<li><b>YATZY:</b> Alla de fem tärningarna visar lika och då ger Yatzy alltid 50 poäng.</li>
+						</ul>
+						<h3>Lycka Till!</h3>
+					</div>
+	    </div>
+	  </div>
+	</div>
+
 
 		<div class="row">
 			<div class="col-md-7 col-xs-12">
@@ -142,6 +181,7 @@
  -->
 
 	</main>
-	<footer></footer>
+	<footer>
+	</footer>
 </body>
 </html>
