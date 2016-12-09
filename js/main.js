@@ -164,9 +164,6 @@ $(function() {
 		}
 
 		if($(this).is(":animated") || fullt == 4 || timesThrown <= 0) {
-			console.log($(this).is(":animated"))
-			console.log(fullt)
-			console.log(timesThrown)
 			return;
 		}
 
@@ -275,7 +272,26 @@ function throwDice(dicesToRoll) {
 
 function newRound() {
 	dices = [0,0,0,0,0];
+	dicesToRoll = [1, 1, 1, 1, 1]
 	timesThrown = 0;
+	$(".throw-dice").html("Kasta tärning (0 av 3 kast.)")
+
+	$(".hold").each(function() {
+		$(this).css({
+			'opacity': '0.5',
+			'z-index': '999'
+		})
+		.animate({
+			'top': 0,
+			'left': 0,
+			'opacity': '1'
+		}, 500);
+		$(this).data("locked","");
+
+	})
+	$(".savePoint").each(function() {
+		$(this).data("locked","");
+	})
 
 	if (activePlayer === users.length -1 || activePlayer == undefined)
 	{
