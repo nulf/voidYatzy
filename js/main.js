@@ -99,9 +99,19 @@ $(function() {
 			return;
 		}
 
-	    dices.forEach(function(value,i) {
-	    	score += value;
-	    })
+		// Check if the user already have that score
+        if(!users[player].score[scorename]) {
+            
+            // Check if the dices are valid for this score
+            if(points = checkUserHandAgainstRule(dices, scorename)) {
+                score = points;
+                console.log(users[player].score);
+
+            } else {
+                console.log("nope");
+            }
+        }
+
 	    if(score == 0) {
 	    	score = "X"
 	    }
@@ -369,4 +379,27 @@ function newRound() {
 	}
 
 	renderScoreTable();
+}
+
+function checkUserHandAgainstRule(dices, scorename) {
+    var ruleAndAssociates = [   "ones",
+                                "twos",
+                                "threes",
+                                "fours",
+                                "fives",
+                                "sixs",
+                                null,
+                                null,
+                                "pair",
+                                "twoPair",
+                                "threeOfAKind",
+                                "fourOfAKind",
+                                "fullHouse",
+                                "smallStraight",
+                                "bigStraight",
+                                "chance",
+                                "yatzy"];
+
+    var points = handRules[ruleAndAssociates[scorename]](dices);
+    return points;
 }
