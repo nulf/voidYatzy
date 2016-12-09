@@ -183,12 +183,12 @@ function turn(num, diceValue) {
 
 // throwDice function, accepting one array as input(which shows locked dices as well)
 // Randomizing new value for dices that arent locked
-function throwDice(dices) {
+function throwDice(dicesToRoll) {
 
 	// Loop through each item in "dices", if it's a number give it a random value(1-6)
-	dices.forEach(function(dice, index) {
-		if(typeof dice === 'number') { 
-			dices[index] = random = Math.floor(Math.random() * 6) + 1;
+	dicesToRoll.forEach(function(diceToRoll, index) {
+		if(typeof diceToRoll === 'number') { 
+			dicesToRoll[index] = random = Math.floor(Math.random() * 6) + 1;
 			var ran = Math.round(Math.random()*20) / 10 + 2;
 			$("[data-type=dice" + index + "]").attr("style", "animation: spin " + ran + "s 1 linear;")
 			doScaledTimeout(index, Math.floor(ran * 1001), random);
