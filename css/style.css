@@ -118,3 +118,11 @@ h4{
     width: 50px;
     float: right;
 }
+
+.btn-restart:hover{ 
+    background-color: #cce6ff;
+}
+
+.btn-restart{
+    float: right;
+}

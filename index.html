@@ -26,6 +26,10 @@
 		<div class="Rules">
      	<button type="submit" class="btn-Rules" style="height:50px; width:50px" data-toggle="modal" data-target=".bs-example-modal-lg"><img src="images/restart-button.png"></button>
 		</div>
+		<div class="restart">
+      <button type="submit" class="btn-restart" style="height:50px; width:50px" onclick="restart()"><img src="images/info-button.png"></button>
+    </div>
+
 		<img id="logo" src="images/wood-burn-text-test.png">
 	</header>
 	<main class="container">
@@ -202,9 +206,26 @@
 	</div>
 </div>
  -->
+		<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+		  <div class="modal-dialog modal-sm" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		      	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					</div>
+		 			<div class="modal-body">
+		      	<h4>Vill du verkligen vill stryka detta alternativ</h4>
+		 			</div>
+		  		<div class="modal-footer">
+		      	<button type="button" class="btn btn-primary">Sumbit</button>
+		   		</div>
+		 		</div>
+			</div>
+		</div>
 
 	</main>
 	<footer>
+		<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm">Small modal</button>
+
 	</footer>
 </body>
 </html>
