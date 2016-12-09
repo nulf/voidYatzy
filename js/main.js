@@ -88,20 +88,23 @@ $(function() {
      
     // Lokalisera vilken rad och column som klickas (lås activecolumn till activePlayer)
 	$(document).on('click', 'td', function () {
-		var notClickAble = [6,7,17]
-	    var player = $(this).data('user');
-	    var scorename = $(this).data('scorename');
-	    var score = 0;
+		var notClickAble = [6,7,17];
+		var player = $(this).data('user');
+		var scorename = $(this).data('scorename');
+		var score = 0;
 
-	    console.log(scorename);
-	    console.log(player);
-	    if($.inArray(scorename, notClickAble) !== -1) {
-	    	return;
-	    }
+		console.log(scorename);
+		console.log(player);
+		if($.inArray(scorename, notClickAble) !== -1) {
+			return;
+		}
 
 	    dices.forEach(function(value,i) {
 	    	score += value;
 	    })
+	    if(score == 0) {
+	    	score = "X"
+	    }
 	    if(player == activePlayer) {
 	    	users[activePlayer].score[scorename] = score;
 	    	newRound();
