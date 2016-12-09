@@ -13,12 +13,14 @@ if(DEMO) {
     activePlayer = 0;
 }
 
-function resetgame() {
-	dices = [0,0,0,0,0];
-	users = [];
-	$(".scoreTable").html('');
-	$(".myModal").modal("show");
+function restart(){
+    dices = [0, 0, 0, 0, 0];
+    users=[];
+    $(".scoreTable").html('');
+    $(".myModal").modal("show");
+    $("ol").html('');
 }
+
 /* ScoreNames to the table.
 ===================================*/
 var scoreName = ["Ettor","Tvår","Treor","Fyror","Femmor","Sexor","Summa","Bonus (50)","Par","Tvåpar","Triss","Fyrtal","Kåk","Liten stege","Stor stege","Chans","Yatzy","Summa"];
@@ -108,7 +110,11 @@ $(function() {
 		show: false
 	})
 
-	
+	    $(".bs-example-modal-sm").modal({
+        backdrop: "static",
+        show: false
+    })
+
 
 
 	/* enter player name and show as list
