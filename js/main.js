@@ -9,6 +9,12 @@ if(DEMO) {
     users = [{"name":"Pontus", "id":0},{"name":"Linn", "id":1},{"name":"Sandra", "id":2},{"name":"Ulf", "id":3},{"name":"Christoffer", "id":4}]
 }
 
+function resetgame() {
+	dices = [0,0,0,0,0];
+	users = [];
+	$(".scoreTable").html('');
+	$(".myModal").modal("show");
+}
 /* ScoreNames to the table.
 ===================================*/
 var scoreName = ["Ettor","Tvår","Treor","Fyror","Femmor","Sexor","Summa","Bonus (50)","Par","Tvåpar","Triss","Fyrtal","Kåk","Liten stege","Stor stege","Chans","Yatzy","Summa"];
@@ -65,8 +71,6 @@ $(function() {
 			$(this).text("Kasta tärning (" + timesThrown + " av 3 kast.)");
 		}
 	});
-
-    //Clickable point table
      
     // Lokalisera vilken rad och column som klickas (lås activecolumn till activePlayer)
 	$(document).on('click', 'td', function () {
@@ -138,6 +142,75 @@ $(function() {
 			newRound();
 	});
 
+/* Lås Tärningar
+===============================*/
+	$("body").on("click",".hold", function() {
+		var diceToMove = $(this);
+		var diceNumber = diceToMove.children('div').data("type").substr(4);
+
+		var fullt = 0;
+		if(diceToMove.data("locked") === "" || diceToMove.data("locked") == undefined) {
+			console.log("Loop")
+			$(".savePoint").each(function(i) {
+				if( $(this).data("locked") == undefined || $(this).data("locked") === "") {
+					freeSavePoint = i;
+					$(this).data("locked",diceNumber);
+					return false;
+				}
+				freeSavePoint = false;
+				fullt++
+			});
+		} else {
+			freeSavePoint = false;
+		}
+
+		if($(this).is(":animated") || fullt == 4) {
+			return;
+		}
+
+		$(".throw-dice").attr("disabled","disabled");
+
+		if(freeSavePoint === false) {
+			lockedPos = $(this).data("locked");
+			freeSavePoint = lockedPos;
+		}
+		var savePoint = $(".savePoint").eq(freeSavePoint);
+		if($(this).data("locked") === "" || $(this).data("locked") == undefined) {
+			$(this).data("locked",freeSavePoint)
+			diceToMove.css({
+				'opacity': '0.5',
+				'z-index': '999'
+			})
+			.animate({
+				'top': savePoint.offset().top - diceToMove.offset().top,
+				'left': savePoint.offset().left - diceToMove.offset().left,
+				'opacity': '1'
+			}, 500, function() {
+				dicesToRoll[diceNumber] = 0;
+				if(!$(":animated").length) {
+					$(".throw-dice").removeAttr('disabled')
+				}
+			})
+			return;
+		}
+		diceToMove.css({
+				'opacity': '0.5',
+				'z-index': '999'
+			})
+			.animate({
+				'top': 0,
+				'left': 0,
+				'opacity': '1'
+			}, 500, function() {
+				lockpos = diceToMove.data("locked")
+				$(".savePoint").eq(lockpos).data("locked","")
+				diceToMove.data("locked","")
+				dicesToRoll[diceNumber] = 1;
+				if(!$(":animated").length) {
+					$(".throw-dice").removeAttr('disabled')
+				}
+			})
+	})
 })
 
 
