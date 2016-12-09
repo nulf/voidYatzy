@@ -29,6 +29,8 @@ var scoreName = ["Ettor","Tvår","Treor","Fyror","Femmor","Sexor","Summa","Bonus
 ===================================*/
 function renderScoreTable() {
 	var PlayerName, PlayerNow;
+	var thickBorderOnScoreName = [5,6,7,16];
+	var boldTextOnScoreName = [6,7,17];
 	$(".scoreTable").html('');
 	var TablePlayers = $('<table class="table table-condensed" id="scoreTbl"><tr><th style="width: 100px;">Spelare</th>')
 	for( var i = 0 ; i < users.length ; i++ ) {
@@ -47,14 +49,20 @@ function renderScoreTable() {
 	}
 
 	for( var i = 0 ; i < scoreName.length ; i++ ) {
-		if(i == 5 || i == 6 || i == 7 || i == 16) {
-			var borderStyle = 'style="border-bottom: 3px solid #000;"';
+		if($.inArray(i, thickBorderOnScoreName) !== -1) {
+			$.inArray(i, boldTextOnScoreName) !== -1 ? bold="font-weight: bold" : bold="";
+			var borderStyle = 'style="border-bottom: 3px solid #000;'+bold+'"';
 		} else {
-			var borderStyle = '';
+			$.inArray(i, boldTextOnScoreName) !== -1 ? borderStyle='style="font-weight: bold"' : borderStyle="";
 		}
 		var newRow = $('<tr data-value="'+ i +'"'+borderStyle+'><th>'+ scoreName[i] +'</th>');
 		for( j = 0 ; j < users.length ; j++ ) {
-			newRow.append('<td data-user="'+users[j].id+'" data-scorename="'+ i +'">'+users[j].score[i]+'</td>');
+			if( users[j].score[i] != null) {
+				showScore = users[j].score[i];
+			} else {
+				showScore = "";
+			}
+			newRow.append('<td data-user="'+users[j].id+'" data-scorename="'+ i +'">'+showScore+'</td>');
 		}
 		TablePlayers.append(newRow);
 	};
@@ -281,6 +289,34 @@ function throwDice(dicesToRoll) {
 		}
 	});
 }
+/* Count the first half of the scoreBoard.
+	Function return an array, [0] = ScorePoints [1] = Bonus score
+	=============== */
+function countFirstHalf() {
+	var score = 0;
+	var bonus = 0;
+	var checkFields = 0;
+	for(i = 0; i <= 5; i++) {
+		userScore = users[activePlayer].score[i];
+		if(typeof userScore == "number" && userScore > 0) {
+			score += userScore
+			checkFields++;
+		}
+		else if(userScore == "X") {
+			checkFields++;
+		}
+	}
+	if(checkFields == 6) {
+		if(score >= 63) {
+			bonus = 50;
+		}
+		// Save the scores if the first half is full
+		users[activePlayer].score[6] = score;
+		users[activePlayer].score[7] = bonus;
+		return [score,bonus];
+	}
+	return false;
+}
 
 function newRound() {
 	dices = [0,0,0,0,0];
@@ -306,6 +342,8 @@ function newRound() {
 	$(".savePoint").each(function() {
 		$(this).data("locked","");
 	})
+	// Count first half and set score
+	countFirstHalf();
 
 	if (activePlayer === users.length -1 || activePlayer == undefined)
 	{
