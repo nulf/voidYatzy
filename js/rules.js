@@ -138,6 +138,10 @@ var handRules = {
         return 0;
     },
 
+    chance: function (dices) {
+        return dices[0] + dices[1] + dices[2] + dices[3] + dices[4];
+    },
+
     yatzy: function (dices) {
         for (var i = 1; i < dices.length; i++) {
             if (dices[0] != dices[i]) {
