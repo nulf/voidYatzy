@@ -6,7 +6,11 @@ var DEMO = true;
 var users=[], dices = [0, 0, 0, 0, 0], dicesToRoll = [1, 1, 1, 1, 1] , scores, activePlayer, timesThrown = 0;
 
 if(DEMO) {
-    users = [{"name":"Pontus", "id":0},{"name":"Linn", "id":1},{"name":"Sandra", "id":2},{"name":"Ulf", "id":3},{"name":"Christoffer", "id":4}]
+    var DemoUsers = ["Pontus","Linn","Sandra","Ulf","Christoffer"];
+    DemoUsers.forEach(function(name, i) {
+    	users.push(new Player(name,i))
+    })
+    activePlayer = 0;
 }
 
 function resetgame() {
@@ -48,7 +52,7 @@ function renderScoreTable() {
 		}
 		var newRow = $('<tr data-value="'+ i +'"'+borderStyle+'><th>'+ scoreName[i] +'</th>');
 		for( j = 0 ; j < users.length ; j++ ) {
-			newRow.append('<td data-user="'+users[j].id+'" data-scorename="'+ i +'"></td>');
+			newRow.append('<td data-user="'+users[j].id+'" data-scorename="'+ i +'">'+users[j].score[i]+'</td>');
 		}
 		TablePlayers.append(newRow);
 	};
@@ -79,6 +83,8 @@ $(function() {
 	    var scorename = $(this).data('scorename');
 
 	    console.log("LOG this:", player, scorename);
+	    if(player == activePlayer)
+	    	newRound();
 
 	});
 
@@ -276,6 +282,7 @@ function newRound() {
 	timesThrown = 0;
 	$(".throw-dice").html("Kasta tärning (0 av 3 kast.)")
 
+	// Animate back the dices to there position
 	$(".hold").each(function() {
 		$(this).css({
 			'opacity': '0.5',
@@ -289,6 +296,7 @@ function newRound() {
 		$(this).data("locked","");
 
 	})
+	// Remove locked data from savePoints
 	$(".savePoint").each(function() {
 		$(this).data("locked","");
 	})
@@ -301,5 +309,6 @@ function newRound() {
 	{
 		activePlayer++;
 	}
+
 	renderScoreTable();
 }
