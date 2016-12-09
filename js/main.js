@@ -3,7 +3,7 @@ var DEMO = true;
 
 /* Global Variables
 =================================== */
-var users=[], dices = [0, 0, 0, 0, 0], scores, activePlayer;
+var users=[], dices = [0, 0, 0, 0, 0], dicesToRoll = [1, 1, 1, 1, 1] , scores, activePlayer;
 
 if(DEMO) {
     users = [{"name":"Pontus", "id":0},{"name":"Linn", "id":1},{"name":"Sandra", "id":2},{"name":"Ulf", "id":3},{"name":"Christoffer", "id":4}]
@@ -60,7 +60,7 @@ $(function() {
 	// Listen for .throw-dice button-click
 	$(".throw-dice").click(function() {
 		if (! window.activeTimers() ) {
-			throwDice(dices);
+			throwDice(dicesToRoll);
 		}
 	});
 
@@ -187,8 +187,8 @@ function throwDice(dicesToRoll) {
 
 	// Loop through each item in "dices", if it's a number give it a random value(1-6)
 	dicesToRoll.forEach(function(diceToRoll, index) {
-		if(typeof diceToRoll === 'number') { 
-			dicesToRoll[index] = random = Math.floor(Math.random() * 6) + 1;
+		if(diceToRoll) { 
+			dices[index] = random = Math.floor(Math.random() * 6) + 1;
 			var ran = Math.round(Math.random()*20) / 10 + 2;
 			$("[data-type=dice" + index + "]").attr("style", "animation: spin " + ran + "s 1 linear;")
 			doScaledTimeout(index, Math.floor(ran * 1001), random);
