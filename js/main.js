@@ -82,7 +82,7 @@ $(function() {
 		if (! window.activeTimers() && timesThrown < 3) {
 			throwDice(dicesToRoll);
 			timesThrown += 1;
-			$(this).text("Kasta tärning (" + timesThrown + " av 3 kast.)");
+			$(this).html("<h2>Yatzy!</h2>" + "<count>"+timesThrown+"</count>");
 		}
 	});
      
@@ -161,7 +161,6 @@ $(function() {
 		$('.form-control').val('');
 
 		users.push(new Player(pName,users.length))
-		console.log(users);
 	});
 
 	$('.form-control').keypress(function(e){
@@ -320,6 +319,11 @@ function countFirstHalf() {
 	var score = 0;
 	var bonus = 0;
 	var checkFields = 0;
+
+	if(activePlayer == undefined) {
+		return;
+	}
+
 	for(i = 0; i <= 5; i++) {
 		userScore = users[activePlayer].score[i];
 		if(typeof userScore == "number" && userScore > 0) {
@@ -346,7 +350,7 @@ function newRound() {
 	dices = [0,0,0,0,0];
 	dicesToRoll = [1, 1, 1, 1, 1];
 	timesThrown = 0;
-	$(".throw-dice").html("Kasta tärning (0 av 3 kast.)")
+	$(".throw-dice").html("<h2>Yatzy!</h2><count>0</count>")
 
 	// Animate back the dices to there position
 	$(".hold").each(function() {
