@@ -278,7 +278,7 @@ function throwDice(dicesToRoll) {
 
 function newRound() {
 	dices = [0,0,0,0,0];
-	dicesToRoll = [1, 1, 1, 1, 1]
+	dicesToRoll = [1, 1, 1, 1, 1];
 	timesThrown = 0;
 	$(".throw-dice").html("Kasta tärning (0 av 3 kast.)")
 
