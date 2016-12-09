@@ -89,7 +89,7 @@ tr:nth-child(even) {
 	width: 60px;
 	border: 1px dotted #ccc;
 	text-align: center;
-	margin: 15px;
+	margin: 15px auto;
 	position: relative;
 	
 }
