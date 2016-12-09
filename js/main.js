@@ -149,8 +149,7 @@ $(function() {
 		var diceNumber = diceToMove.children('div').data("type").substr(4);
 
 		var fullt = 0;
-		if(diceToMove.data("locked") === "" || diceToMove.data("locked") == undefined) {
-			console.log("Loop")
+		if((diceToMove.data("locked") === "" || diceToMove.data("locked") == undefined) && timesThrown > 0) {
 			$(".savePoint").each(function(i) {
 				if( $(this).data("locked") == undefined || $(this).data("locked") === "") {
 					freeSavePoint = i;
@@ -164,7 +163,10 @@ $(function() {
 			freeSavePoint = false;
 		}
 
-		if($(this).is(":animated") || fullt == 4) {
+		if($(this).is(":animated") || fullt == 4 || timesThrown <= 0) {
+			console.log($(this).is(":animated"))
+			console.log(fullt)
+			console.log(timesThrown)
 			return;
 		}
 
