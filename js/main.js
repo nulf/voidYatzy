@@ -3,7 +3,7 @@ var DEMO = true;
 
 /* Global Variables
 =================================== */
-var users=[], dices = [0, 0, 0, 0, 0], dicesToRoll = [1, 1, 1, 1, 1] , scores, activePlayer;
+var users=[], dices = [0, 0, 0, 0, 0], dicesToRoll = [1, 1, 1, 1, 1] , scores, activePlayer, timesThrown = 0;
 
 if(DEMO) {
     users = [{"name":"Pontus", "id":0},{"name":"Linn", "id":1},{"name":"Sandra", "id":2},{"name":"Ulf", "id":3},{"name":"Christoffer", "id":4}]
@@ -59,8 +59,10 @@ $(function() {
 
 	// Listen for .throw-dice button-click
 	$(".throw-dice").click(function() {
-		if (! window.activeTimers() ) {
+		if (! window.activeTimers() && timesThrown < 3) {
 			throwDice(dicesToRoll);
+			timesThrown += 1;
+			$(this).text("Kasta tärning (" + timesThrown + " av 3 kast.)");
 		}
 	});
 
@@ -198,6 +200,7 @@ function throwDice(dicesToRoll) {
 
 function newRound() {
 	dices = [0,0,0,0,0];
+	timesThrown = 0;
 
 	if (activePlayer === users.length -1 || activePlayer == undefined)
 	{
