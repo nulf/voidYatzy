@@ -79,7 +79,7 @@ $(function() {
 
 	// Listen for .throw-dice button-click
 	$(".throw-dice").click(function() {
-		if (! window.activeTimers() && timesThrown < 3) {
+		if (timesThrown < 3) {
 			throwDice(dicesToRoll);
 			timesThrown += 1;
 			$(this).html("<h2>Yatzy!</h2>" + "<count>"+timesThrown+"</count>");
@@ -302,7 +302,7 @@ function turn(num, diceValue) {
 // throwDice function, accepting one array as input(which shows locked dices as well)
 // Randomizing new value for dices that arent locked
 function throwDice(dicesToRoll) {
-
+    $(".throw-dice").attr("disabled","disabled");
 	// Loop through each item in "dices", if it's a number give it a random value(1-6)
 	dicesToRoll.forEach(function(diceToRoll, index) {
 		if(diceToRoll) {
@@ -314,6 +314,7 @@ function throwDice(dicesToRoll) {
             }
              $("[data-type=dice" + index + "]").bind('oanimationend animationend webkitAnimationEnd', function() { 
                turn(index,random);
+               $(".throw-dice").removeAttr('disabled')
             });
 			$("[data-type=dice" + index + "]").css("animation", "spin"+random+" "+ran+"s 1 linear")
 		}
