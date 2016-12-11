@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="sv">
 <head>
 	<meta charset="UTF-8">
@@ -12,9 +12,13 @@
 	<script src="js/rules.js"></script>
 	<script src="js/klasser/player.js"></script>
 	<script src="js/main.js"></script>
+    <script src="js/confetti.js"></script>
 
 	<!-- Lib CSS files -->
 	<link rel="stylesheet" href="css/bootstrap.min.css">
+
+	<!-- Font Styles -->
+	<link href="https://fonts.googleapis.com/css?family=Cinzel:700,900" rel="stylesheet">
 
 	<!-- CSS style files -->
 	<link rel="stylesheet" href="css/dice.css">
@@ -32,8 +36,9 @@
 
 		<img id="logo" src="images/wood-burn-text-test.png">
 	</header>
+   
 	<main class="container">
-
+        <!--Playah modal-->
     <div class="modal fade myModal" tabindex="-1" role="dialog" data-show="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -58,9 +63,26 @@
         </div>
       </div>
     </div>
+    <!--playah end-->
 
-	
+        <!--Win modal-->
+        <button class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Large modal</button>
 
+        <div class="modal fade bd-example-modal-lg winner" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div id="win" class="modal-content">
+                    <img id="crown" src="images/crown.png"/>
+
+                    <button id="winbut" class="btn btn-primary">Play again?</button>
+                </div>
+            </div>
+        </div> 
+        <!--win end-->
+
+        <!--Confetti-->
+        <canvas height='1' id='confetti' width='1'> </canvas>
+
+        <!--Rule modal-->
 	<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
 	  <div class="modal-dialog modal-lg" role="document">
 	    <div class="modal-content">
@@ -92,8 +114,9 @@
 	    </div>
 	  </div>
 	</div>
+        <!--rule end-->
 
-
+        <!--Dices-->
 		<div class="row">
 			<div class="col-md-7 col-xs-12">
 				<div class="dice-container">
@@ -158,9 +181,11 @@
 								</div>
 							</div>
 						</div>
-					</div><br><br>
+					</div><br>
+                    <!--dice end-->
+
 					<!-- throwButton -->
-					<button type="button" class="btn btn-default throw-dice">Kasta tärning (0 av 3 kast.)</button>
+					<button type="button" class="throw-dice"><h2>Yatzy!</h2><count>0</count></button>
 					<!-- end -->
 					<div class="row">
 						<div class="col-xs-3">
