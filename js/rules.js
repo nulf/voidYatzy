@@ -108,7 +108,7 @@ var handRules = {
         return 0;
     },
 
-    fullHouse: function (dices) {
+    fullHouse: function (dices) {// fullhouse
         var diceArrayCopy = dices;
         diceArrayCopy.sort();
         diceArrayCopy = diceArrayCopy.join("");
@@ -142,7 +142,7 @@ var handRules = {
         return dices[0] + dices[1] + dices[2] + dices[3] + dices[4];
     },
 
-    yatzy: function (dices) {
+    yatzy: function (dices) { // yatzy
         for (var i = 1; i < dices.length; i++) {
             if (dices[0] != dices[i]) {
                 return 0;

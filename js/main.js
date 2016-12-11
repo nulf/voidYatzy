@@ -41,7 +41,7 @@ function renderScoreTable() {
 			PlayerName = users[i].name;
 		}
 		if(i == activePlayer) {
-			PlayerNow = "background-color: #ccc;";
+		    PlayerNow = "background-color: rgba(216, 79, 75, 0.9);";
 		} else {
 			PlayerNow = "";
 		}
@@ -86,8 +86,10 @@ $(function() {
 		}
 	});
      
-    // Lokalisera vilken rad och column som klickas (lås activecolumn till activePlayer)
+    // Validate score
 	$(document).on('click', 'td', function () {
+	        if (dices[0] == 0){return;}
+
 		var notClickAble = [6,7,17];
 		var player = $(this).data('user');
 		var scorename = $(this).data('scorename');
@@ -120,6 +122,11 @@ $(function() {
 	    	newRound();
 	    }
 
+	});
+    //winner modal restart
+	$(document).on('click', '#winbut', function () {
+	    restart();
+	    $('.winner').modal('toggle');
 	});
 
 
@@ -350,7 +357,7 @@ function newRound() {
 	dices = [0,0,0,0,0];
 	dicesToRoll = [1, 1, 1, 1, 1];
 	timesThrown = 0;
-	$(".throw-dice").html("<h2>Yatzy!</h2><count>0</count>")
+	$(".throw-dice").html("<h2>Yatzy!</h2><count id='ck'>0</count>")
 
 	// Animate back the dices to there position
 	$(".hold").each(function() {

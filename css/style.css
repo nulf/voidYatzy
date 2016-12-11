@@ -14,6 +14,37 @@ img {
 	width: 100%;
 }
 
+/*win modal*/
+#crown{
+    width: 20%;
+    display:block;
+    margin: 0 auto;
+}
+
+#winbut{
+    background-color:#d9534f;
+    border-color: gray;
+    color: whitesmoke;
+    border-radius:10px;   
+}
+
+#win {
+    background: whitesmoke url(../images/winBG.png) right repeat-x;
+    border-radius:20px;
+    text-align:center;
+}
+
+#confetti{
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 80%;
+  width: 100%;
+  z-index:1000;
+  display:none;
+}
+/*--------------------*/
+
 /*Header style*/
 header {
 	margin: 0 auto;
@@ -60,7 +91,6 @@ button:focus { outline:0 !important; }
 }
 
 /*Dice table*/
-
 .dice-container{
 	background-image: url(../images/gameboard.jpg);
 	border-style: solid;
@@ -71,7 +101,6 @@ button:focus { outline:0 !important; }
 }
 
 /* scoreTable */
-
 table {
 	background-image: url(../images/paper-texture.jpg);
 	-webkit-background-size: cover;
@@ -107,7 +136,7 @@ td, th {
 }
 
 tr:nth-child(even) {
-	background-color: #f2f2f2
+	background-color: #f2f2f2;
 }
 
 .scoreTable {
@@ -123,19 +152,11 @@ tr:nth-child(even) {
 	width: 60px;
 	border: 1px dotted #ccc;
 	text-align: center;
-	margin: 15px auto;
+	margin: 24px auto;
 	position: relative;
-	
 }
-/* If we want lightgray between rows, 
-tr:nth-child(even) {
-	background-color: #f2f2f2
-}
-*/
-
 
 /* pop up ruta*/
-
 .modal-content
 {
 	background-color: #cce6ff;
