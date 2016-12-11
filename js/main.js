@@ -263,12 +263,6 @@ $(function() {
 })
 
 
-function doScaledTimeout(i, ms, diceValue) {
-	setTimeout(function() {
-		turn(i, diceValue);
-	}, ms);
-}
-
 // EXAMPLE FOR TURNING DICES 
 function turn(num, diceValue) {
 	switch(diceValue) {
@@ -311,11 +305,17 @@ function throwDice(dicesToRoll) {
 
 	// Loop through each item in "dices", if it's a number give it a random value(1-6)
 	dicesToRoll.forEach(function(diceToRoll, index) {
-		if(diceToRoll) { 
+		if(diceToRoll) {
+            var random="";
 			dices[index] = random = Math.floor(Math.random() * 6) + 1;
-			var ran = Math.round(Math.random()*20) / 10 + 2;
-			$("[data-type=dice" + index + "]").attr("style", "animation: spin " + ran + "s 1 linear;")
-			doScaledTimeout(index, Math.floor(ran * 1001), random);
+			var ran = Math.round(Math.random()*20) / 10 + 1;
+            while ( ran <= 1.9 || ran >= 2.8) {
+                ran = Math.round(Math.random()*20) / 10 + 1;
+            }
+             $("[data-type=dice" + index + "]").bind('oanimationend animationend webkitAnimationEnd', function() { 
+               turn(index,random);
+            });
+			$("[data-type=dice" + index + "]").css("animation", "spin"+random+" "+ran+"s 1 linear")
 		}
 	});
 }
