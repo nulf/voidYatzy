@@ -37,7 +37,7 @@ function renderScoreTable() {
 	for( var i = 0 ; i < users.length ; i++ ) {
 		// if more than 4 players and usernames are long, shorten it
 		if( users[i].name.length > 5) {
-			PlayerName = users[i].name.substr(0,5)+'..';
+			PlayerName = users[i].name.substr(0,4)+'..';
 		} else {
 			PlayerName = users[i].name;
 		}
@@ -388,7 +388,8 @@ function newRound() {
 	dices = [0,0,0,0,0];
 	dicesToRoll = [1, 1, 1, 1, 1];
 	timesThrown = 0;
-	$(".throw-dice").html("<h2>Yatzy!</h2><count id='ck'>3</count>")
+
+	$(".throw-dice").html("<h2>Yatzy!</h2><count>0</count>")
 
 	// Animate back the dices to there position
 	$(".hold").each(function() {
@@ -416,8 +417,12 @@ function newRound() {
 	if(checkFullScoreBoard()) {
 		// To show the last insert point render table.
 		renderScoreTable();
+<<<<<<< HEAD
+	    // Run winner popup! and pause the game!
+=======
 		totalScore();
 		// Run winner popup! and pause the game!
+>>>>>>> adace4dc1508139f3222e2f8a66493166f6ffe2b
 		$(".winner").modal("show");
 		$("#winText").html("<h1>" + "1. " + users[0].name + ", " + users[0].totalScore + " points" + "</h1><br>" + 
 							"<h3>2. " + users[1].name + ", " + users[1].totalScore + " points" + "</h3><br>" +
