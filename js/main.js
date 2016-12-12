@@ -330,7 +330,7 @@ function throwDice(dicesToRoll) {
                 ran = Math.round(Math.random()*20) / 10 + 1;
             }
              $("[data-type=dice" + index + "]").bind('oanimationend animationend webkitAnimationEnd', function() { 
-               turn(index,random);
+               turn(index,dices[index]);
                $(".throw-dice").removeAttr('disabled')
             });
 			$("[data-type=dice" + index + "]").css("animation", "spin"+random+" "+ran+"s 1 linear")
