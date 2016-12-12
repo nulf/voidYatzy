@@ -113,6 +113,9 @@ var handRules = {
         diceArrayCopy.sort();
         diceArrayCopy = diceArrayCopy.join("");
         if(sumArray = /(.)\1{2}(.)\2|(.)\3(.)\4{2}/.exec(diceArrayCopy)) {
+            if(/^\D*(\d)(?:\D*|\1)*$/.test(diceArrayCopy)) {
+                return 0;
+            }
             return (25);
         }
         return 0;

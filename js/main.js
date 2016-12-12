@@ -19,6 +19,7 @@ function restart(){
     $(".scoreTable").html('');
     $(".myModal").modal("show");
     $("ol").html('');
+    activePlayer = null;
 }
 
 /* ScoreNames to the table.
@@ -79,10 +80,12 @@ $(function() {
 
 	// Listen for .throw-dice button-click
 	$(".throw-dice").click(function() {
-		if (! window.activeTimers() && timesThrown < 3) {
+		if (timesThrown < 3) {
+			renderScoreTable();
 			throwDice(dicesToRoll);
 			timesThrown += 1;
-			$(this).html("<h2>Yatzy!</h2>" + "<count>"+timesThrown+"</count>");
+			$(this).html("<h2>Yatzy!</h2>" + "<count>"+(3-timesThrown)+"</count>");
+			checkAndShowPossibleScores(dices, activePlayer);
 		}
 	});
      
@@ -95,8 +98,6 @@ $(function() {
 		var scorename = $(this).data('scorename');
 		var score = 0;
 
-		console.log(scorename);
-		console.log(player);
 		if($.inArray(scorename, notClickAble) !== -1) {
 			return;
 		}
@@ -107,26 +108,20 @@ $(function() {
             // Check if the dices are valid for this score
             if(points = checkUserHandAgainstRule(dices, scorename)) {
                 score = points;
-                console.log(users[player].score);
-
             } else {
                 console.log("nope");
             }
+           	if(score == 0) {
+	    		score = "X";
+	    	}
+	    	if(player == activePlayer) {
+	    		users[activePlayer].score[scorename] = score;
+	    		newRound();
+	    	}
+        } else {
+        	console.log("Sorry, du har redan satt poäng där.");
         }
 
-	    if(score == 0) {
-	    	score = "X"
-	    }
-	    if(player == activePlayer) {
-	    	users[activePlayer].score[scorename] = score;
-	    	newRound();
-	    }
-
-	});
-    //winner modal restart
-	$(document).on('click', '#winbut', function () {
-	    restart();
-	    $('.winner').modal('toggle');
 	});
 
 
@@ -135,7 +130,7 @@ $(function() {
 			backdrop: "static",
 			show: false
 		})
-		renderScoreTable()
+		renderScoreTable();
 	} else {
 		// Autoshow modal on load
 		$(".myModal").modal({
@@ -143,11 +138,6 @@ $(function() {
 			show: true
 		})
 	}
-
-	$(".myModal").modal({
-		backdrop: "static",
-		show: false
-	})
 
 	    $(".bs-example-modal-sm").modal({
         backdrop: "static",
@@ -163,11 +153,13 @@ $(function() {
 		if(users.length == 5){
 			return;
 		}
-		var pName=$(".form-control").val();
-		$("ol").append('<li>'+pName+'</li>');
-		$('.form-control').val('');
-
-		users.push(new Player(pName,users.length))
+		var pName = $(".form-control").val().trim();
+		console.log(pName);
+		if(pName.length > 0) {
+			$("ol").append('<li>'+pName+'</li>');
+			$('.form-control').val('');
+			users.push(new Player(pName,users.length))
+		}
 	});
 
 	$('.form-control').keypress(function(e){
@@ -187,9 +179,10 @@ $(function() {
 	/* Start round
 	==========================*/
 	$(".btn-StartGame").click(function() {
-		if(users.length > 0)
+		if(users.length > 0) {
 			$(".myModal").modal("toggle");
 			newRound();
+		}
 	});
 
 /* Lås Tärningar
@@ -263,12 +256,6 @@ $(function() {
 })
 
 
-function doScaledTimeout(i, ms, diceValue) {
-	setTimeout(function() {
-		turn(i, diceValue);
-	}, ms);
-}
-
 // EXAMPLE FOR TURNING DICES 
 function turn(num, diceValue) {
 	switch(diceValue) {
@@ -308,14 +295,21 @@ function turn(num, diceValue) {
 // throwDice function, accepting one array as input(which shows locked dices as well)
 // Randomizing new value for dices that arent locked
 function throwDice(dicesToRoll) {
-
+    $(".throw-dice").attr("disabled","disabled");
 	// Loop through each item in "dices", if it's a number give it a random value(1-6)
 	dicesToRoll.forEach(function(diceToRoll, index) {
-		if(diceToRoll) { 
+		if(diceToRoll) {
+            var random="";
 			dices[index] = random = Math.floor(Math.random() * 6) + 1;
-			var ran = Math.round(Math.random()*20) / 10 + 2;
-			$("[data-type=dice" + index + "]").attr("style", "animation: spin " + ran + "s 1 linear;")
-			doScaledTimeout(index, Math.floor(ran * 1001), random);
+			var ran = Math.round(Math.random()*20) / 10 + 1;
+            while ( ran <= 1.9 || ran >= 2.8) {
+                ran = Math.round(Math.random()*20) / 10 + 1;
+            }
+             $("[data-type=dice" + index + "]").bind('oanimationend animationend webkitAnimationEnd', function() { 
+               turn(index,random);
+               $(".throw-dice").removeAttr('disabled')
+            });
+			$("[data-type=dice" + index + "]").css("animation", "spin"+random+" "+ran+"s 1 linear")
 		}
 	});
 }
@@ -353,11 +347,24 @@ function countFirstHalf() {
 	return false;
 }
 
+function checkFullScoreBoard() {
+	var ignoreIndexForScore = [6,7,17]
+	for(i=0;i<scoreName.length;i++) {
+		if($.inArray(i,ignoreIndexForScore) === -1) {
+			if(!users[(users.length-1)].score[i]) {
+				return false;
+				break;
+			}
+		}
+	}
+	return true;
+}
+
 function newRound() {
 	dices = [0,0,0,0,0];
 	dicesToRoll = [1, 1, 1, 1, 1];
 	timesThrown = 0;
-	$(".throw-dice").html("<h2>Yatzy!</h2><count id='ck'>0</count>")
+	$(".throw-dice").html("<h2>Yatzy!</h2><count id='ck'>3</count>")
 
 	// Animate back the dices to there position
 	$(".hold").each(function() {
@@ -377,8 +384,18 @@ function newRound() {
 	$(".savePoint").each(function() {
 		$(this).data("locked","");
 	})
+
 	// Count first half and set score
 	countFirstHalf();
+
+	//Check if the last users scoreboard is full
+	if(checkFullScoreBoard()) {
+		// To show the last insert point render table.
+		renderScoreTable();
+		// Run winner popup! and pause the game!
+		$(".winner").modal("show");
+		return;
+	}
 
 	if (activePlayer === users.length -1 || activePlayer == undefined)
 	{
@@ -388,8 +405,9 @@ function newRound() {
 	{
 		activePlayer++;
 	}
-
+	//Render table
 	renderScoreTable();
+	
 }
 
 function checkUserHandAgainstRule(dices, scorename) {
@@ -413,4 +431,33 @@ function checkUserHandAgainstRule(dices, scorename) {
 
     var points = handRules[ruleAndAssociates[scorename]](dices);
     return points;
+}
+
+function checkAndShowPossibleScores(dices, user)  {
+    var possibilityArray = [];
+    var indexOfRule = 0;
+    for(var rule in handRules) {
+        possibilityArray[indexOfRule] = handRules[rule](dices);
+        indexOfRule += 1;
+    }
+    
+    possibilityArray.forEach(function(possibleScore, index) {
+        if(possibleScore && index <= 5) {
+            $("td[data-user='" + user + "'][data-scorename='" + index + "']").css("background-color", "green");
+        } else if (possibleScore && index > 5) {
+            $("td[data-user='" + user + "'][data-scorename='" + (index + 2) + "']").css("background-color", "green");
+        }
+    });
+}
+
+function totalScore() {
+	users.forEach (function(user){
+		var totalSum = 0;
+		user.score.forEach(function(score, index){
+			if (typeof score === 'number' && index >= 6)
+				totalSum += score;
+		}) 
+		user.score.push(totalSum);
+		$("td[data-user='" + user.id + "'][data-scorename='" + 17 + "']").text(totalSum);
+	})
 }
