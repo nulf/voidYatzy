@@ -415,3 +415,20 @@ function checkUserHandAgainstRule(dices, scorename) {
     var points = handRules[ruleAndAssociates[scorename]](dices);
     return points;
 }
+
+function checkAndShowPossibleScores(dices, user)  {
+    var possibilityArray = [];
+    var indexOfRule = 0;
+    for(var rule in handRules) {
+        possibilityArray[indexOfRule] = handRules[rule](dices);
+        indexOfRule += 1;
+    }
+    
+    possibilityArray.forEach(function(possibleScore, index) {
+        if(possibleScore && index <= 5) {
+            $("td[data-user='" + user + "'][data-scorename='" + index + "']").css("background-color", "red");
+        } else if (possibleScore && index > 5) {
+            $("td[data-user='" + user + "'][data-scorename='" + (index + 2) + "']").css("background-color", "red");
+        }
+    });
+}
