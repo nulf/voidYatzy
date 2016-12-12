@@ -1,5 +1,5 @@
 /* ANVÄND DENNA FÖR ATT UNDVIKA POPUP RUTA */
-var DEMO = false;
+var DEMO = true;
 
 /* Global Variables
 =================================== */
@@ -459,10 +459,11 @@ function checkAndShowPossibleScores(dices, user)  {
 function totalScore() {
 	users.forEach (function(user){
 		var totalSum = 0;
-		user.score.forEach(function(score){
-			if (typeof score === 'number')
-			totalSum += score;
+		user.score.forEach(function(score, index){
+			if (typeof score === 'number' && index >= 6)
+				totalSum += score;
 		}) 
+		user.score.push(totalSum);
 		$("td[data-user='" + user.id + "'][data-scorename='" + 17 + "']").text(totalSum);
 	})
 }
