@@ -352,6 +352,19 @@ function countFirstHalf() {
 	return false;
 }
 
+function checkFullScoreBoard() {
+	var ignoreIndexForScore = [6,7,17]
+	for(i=0;i<scoreName.length;i++) {
+		if($.inArray(i,ignoreIndexForScore) === -1) {
+			if(!users[(users.length-1)].score[i]) {
+				return false;
+				break;
+			}
+		}
+	}
+	return true;
+}
+
 function newRound() {
 	dices = [0,0,0,0,0];
 	dicesToRoll = [1, 1, 1, 1, 1];
@@ -376,8 +389,18 @@ function newRound() {
 	$(".savePoint").each(function() {
 		$(this).data("locked","");
 	})
+
 	// Count first half and set score
 	countFirstHalf();
+
+	//Check if the last users scoreboard is full
+	if(checkFullScoreBoard()) {
+		// To show the last insert point render table.
+		renderScoreTable();
+		// Run winner popup! and pause the game!
+		$(".winner").modal("show");
+		return;
+	}
 
 	if (activePlayer === users.length -1 || activePlayer == undefined)
 	{
@@ -387,8 +410,9 @@ function newRound() {
 	{
 		activePlayer++;
 	}
-
+	//Render table
 	renderScoreTable();
+	
 }
 
 function checkUserHandAgainstRule(dices, scorename) {
