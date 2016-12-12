@@ -443,9 +443,9 @@ function checkAndShowPossibleScores(dices, user)  {
     
     possibilityArray.forEach(function(possibleScore, index) {
         if(possibleScore && index <= 5) {
-            $("td[data-user='" + user + "'][data-scorename='" + index + "']").css("background-color", "red");
+            $("td[data-user='" + user + "'][data-scorename='" + index + "']").css("background-color", "green");
         } else if (possibleScore && index > 5) {
-            $("td[data-user='" + user + "'][data-scorename='" + (index + 2) + "']").css("background-color", "red");
+            $("td[data-user='" + user + "'][data-scorename='" + (index + 2) + "']").css("background-color", "green");
         }
     });
 }
