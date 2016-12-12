@@ -454,3 +454,14 @@ function checkAndShowPossibleScores(dices, user)  {
         }
     });
 }
+
+function totalScore() {
+	users.forEach (function(user){
+		var totalSum = 0;
+		user.score.forEach(function(score){
+			if (typeof score === 'number')
+			totalSum += score;
+		}) 
+		$("td[data-user='" + user.id + "'][data-scorename='" + 17 + "']").text(totalSum);
+	})
+}
