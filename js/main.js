@@ -95,8 +95,6 @@ $(function() {
 		var scorename = $(this).data('scorename');
 		var score = 0;
 
-		console.log(scorename);
-		console.log(player);
 		if($.inArray(scorename, notClickAble) !== -1) {
 			return;
 		}
@@ -107,22 +105,22 @@ $(function() {
             // Check if the dices are valid for this score
             if(points = checkUserHandAgainstRule(dices, scorename)) {
                 score = points;
-                console.log(users[player].score);
-
             } else {
                 console.log("nope");
             }
+           	if(score == 0) {
+	    		score = "X"
+	    	}
+	    	if(player == activePlayer) {
+	    		users[activePlayer].score[scorename] = score;
+	    		newRound();
+	    	}
+        } else {
+        	console.log("Sorry, du har redan satt poäng där.");
         }
 
-	    if(score == 0) {
-	    	score = "X"
-	    }
-	    if(player == activePlayer) {
-	    	users[activePlayer].score[scorename] = score;
-	    	newRound();
-	    }
-
 	});
+
     //winner modal restart
 	$(document).on('click', '#winbut', function () {
 	    restart();
