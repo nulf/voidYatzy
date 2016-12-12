@@ -1,5 +1,5 @@
 /* ANVÄND DENNA FÖR ATT UNDVIKA POPUP RUTA */
-var DEMO = true;
+var DEMO = false;
 
 /* Global Variables
 =================================== */
@@ -19,6 +19,7 @@ function restart(){
     $(".scoreTable").html('');
     $(".myModal").modal("show");
     $("ol").html('');
+    activePlayer = null;
 }
 
 /* ScoreNames to the table.
@@ -82,7 +83,7 @@ $(function() {
 		if (timesThrown < 3) {
 			throwDice(dicesToRoll);
 			timesThrown += 1;
-			$(this).html("<h2>Yatzy!</h2>" + "<count>"+timesThrown+"</count>");
+			$(this).html("<h2>Yatzy!</h2>" + "<count>"+(3-timesThrown)+"</count>");
 		}
 	});
      
@@ -369,7 +370,7 @@ function newRound() {
 	dices = [0,0,0,0,0];
 	dicesToRoll = [1, 1, 1, 1, 1];
 	timesThrown = 0;
-	$(".throw-dice").html("<h2>Yatzy!</h2><count id='ck'>0</count>")
+	$(".throw-dice").html("<h2>Yatzy!</h2><count id='ck'>3</count>")
 
 	// Animate back the dices to there position
 	$(".hold").each(function() {
