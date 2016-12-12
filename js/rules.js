@@ -50,7 +50,7 @@ var handRules = {
     },
 
     pair: function (dices) {
-        var diceArrayCopy = dices;
+        var diceArrayCopy = dices.slice();
         diceArrayCopy.sort();
         diceArrayCopy = diceArrayCopy.join("");
         if(sumArray = /(.)\1{1}/.exec(diceArrayCopy)) {
@@ -71,7 +71,7 @@ var handRules = {
     },
 
     twoPair: function (dices) {
-        var diceArrayCopy = dices;
+        var diceArrayCopy = dices.slice();
         diceArrayCopy.sort();
         diceArrayCopy = diceArrayCopy.join("");
         if(sumArray = /(.)\1{1}/.exec(diceArrayCopy)) {
@@ -88,7 +88,7 @@ var handRules = {
     },
 
     threeOfAKind: function (dices) {
-        var diceArrayCopy = dices;
+        var diceArrayCopy = dices.slice();
         diceArrayCopy.sort();
         diceArrayCopy = diceArrayCopy.join("");
         if(sumArray = /(.)\1{2}/.exec(diceArrayCopy)) {
@@ -99,7 +99,7 @@ var handRules = {
     },
 
     fourOfAKind: function (dices) {
-        var diceArrayCopy = dices;
+        var diceArrayCopy = dices.slice();
         diceArrayCopy.sort();
         diceArrayCopy = diceArrayCopy.join("");
         if(sumArray = /(.)\1{3}/.exec(diceArrayCopy)) {
@@ -109,7 +109,7 @@ var handRules = {
     },
 
     fullHouse: function (dices) {// fullhouse
-        var diceArrayCopy = dices;
+        var diceArrayCopy = dices.slice();
         diceArrayCopy.sort();
         diceArrayCopy = diceArrayCopy.join("");
         if(sumArray = /(.)\1{2}(.)\2|(.)\3(.)\4{2}/.exec(diceArrayCopy)) {
@@ -122,7 +122,7 @@ var handRules = {
     },
 
     smallStraight: function (dices) {
-        var diceArrayCopy = dices;
+        var diceArrayCopy = dices.slice();
         diceArrayCopy.sort();
         diceArrayCopy = diceArrayCopy.join("");
         if(sumArray = /12345/.exec(diceArrayCopy)) {
@@ -132,7 +132,7 @@ var handRules = {
     },
 
     bigStraight: function (dices) {
-        var diceArrayCopy = dices;
+        var diceArrayCopy = dices.slice();
         diceArrayCopy.sort();
         diceArrayCopy = diceArrayCopy.join("");
         if(sumArray = /23456/.exec(diceArrayCopy)) {
