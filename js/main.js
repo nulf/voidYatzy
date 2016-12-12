@@ -122,12 +122,6 @@ $(function() {
 
 	});
 
-    //winner modal restart
-	$(document).on('click', '#winbut', function () {
-	    restart();
-	    $('.winner').modal('toggle');
-	});
-
 
 	if(DEMO) {
 		$(".myModal").modal({
@@ -143,11 +137,6 @@ $(function() {
 		})
 	}
 
-	$(".myModal").modal({
-		backdrop: "static",
-		show: false
-	})
-
 	    $(".bs-example-modal-sm").modal({
         backdrop: "static",
         show: false
@@ -162,11 +151,13 @@ $(function() {
 		if(users.length == 5){
 			return;
 		}
-		var pName=$(".form-control").val();
-		$("ol").append('<li>'+pName+'</li>');
-		$('.form-control').val('');
-
-		users.push(new Player(pName,users.length))
+		var pName = $(".form-control").val().trim();
+		console.log(pName);
+		if(pName.length > 0) {
+			$("ol").append('<li>'+pName+'</li>');
+			$('.form-control').val('');
+			users.push(new Player(pName,users.length))
+		}
 	});
 
 	$('.form-control').keypress(function(e){
@@ -186,9 +177,10 @@ $(function() {
 	/* Start round
 	==========================*/
 	$(".btn-StartGame").click(function() {
-		if(users.length > 0)
+		if(users.length > 0) {
 			$(".myModal").modal("toggle");
 			newRound();
+		}
 	});
 
 /* Lås Tärningar
