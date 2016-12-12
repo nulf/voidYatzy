@@ -323,7 +323,7 @@ function throwDice(dicesToRoll) {
 	// Loop through each item in "dices", if it's a number give it a random value(1-6)
 	dicesToRoll.forEach(function(diceToRoll, index) {
 		if(diceToRoll) {
-            var random="";
+            var random = 0;
 			dices[index] = random = Math.floor(Math.random() * 6) + 1;
 			var ran = Math.round(Math.random()*20) / 10 + 1;
             while ( ran <= 1.9 || ran >= 2.8) {
