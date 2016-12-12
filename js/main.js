@@ -20,6 +20,7 @@ function restart(){
     $(".myModal").modal("show");
     $("ol").html('');
     activePlayer = null;
+ 	$("#confetti").css("display", "none");
 }
 
 /* ScoreNames to the table.
