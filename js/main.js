@@ -91,7 +91,9 @@ $(function() {
      
     // Validate score
 	$(document).on('click', 'td', function () {
-	        if (dices[0] == 0){return;}
+		if (dices[0] == 0){return;}
+	        
+
 
 		var notClickAble = [6,7,17];
 		var player = $(this).data('user');
@@ -112,15 +114,37 @@ $(function() {
                 console.log("nope");
             }
            	if(score == 0) {
-	    		score = "X";
+           		$('.bs-example-modal-sm').find('.btn-cross').data("score",scorename);
+           		$('.bs-example-modal-sm').find('.modal-body').html("<h4>Vill du verkligen vill stryka "+scoreName[scorename]+"</h4>");
+	    		$('.bs-example-modal-sm').modal('toggle');
+		    	return;
 	    	}
 	    	if(player == activePlayer) {
 	    		users[activePlayer].score[scorename] = score;
 	    		newRound();
 	    	}
-        } else {
+
+        } 
+        else {
         	console.log("Sorry, du har redan satt poäng där.");
         }
+
+	    
+
+	});
+
+	$(document).on('click', '.btn-cross', function () {
+		$('.bs-example-modal-sm').modal('toggle');
+	    scorename = $(this).data('score');
+	    users[activePlayer].score[scorename] = "X";
+	    newRound();
+
+	});
+
+    //winner modal restart
+	$(document).on('click', '#winbut', function () {
+	    restart();
+	    $('.winner').modal('toggle');
 
 	});
 
@@ -444,9 +468,9 @@ function checkAndShowPossibleScores(dices, user)  {
     
     possibilityArray.forEach(function(possibleScore, index) {
         if(possibleScore && index <= 5) {
-            $("td[data-user='" + user + "'][data-scorename='" + index + "']").css("background-color", "red");
+            $("td[data-user='" + user + "'][data-scorename='" + index + "']").css("background-color", "green");
         } else if (possibleScore && index > 5) {
-            $("td[data-user='" + user + "'][data-scorename='" + (index + 2) + "']").css("background-color", "red");
+            $("td[data-user='" + user + "'][data-scorename='" + (index + 2) + "']").css("background-color", "green");
         }
     });
 }
