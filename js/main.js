@@ -417,12 +417,8 @@ function newRound() {
 	if(checkFullScoreBoard()) {
 		// To show the last insert point render table.
 		renderScoreTable();
-<<<<<<< HEAD
 	    // Run winner popup! and pause the game!
-=======
 		totalScore();
-		// Run winner popup! and pause the game!
->>>>>>> adace4dc1508139f3222e2f8a66493166f6ffe2b
 		$(".winner").modal("show");
 		$("#winText").html("<h1>" + "1. " + users[0].name + ", " + users[0].totalScore + " points" + "</h1><br>" + 
 							"<h3>2. " + users[1].name + ", " + users[1].totalScore + " points" + "</h3><br>" +
