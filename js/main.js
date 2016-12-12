@@ -81,9 +81,11 @@ $(function() {
 	// Listen for .throw-dice button-click
 	$(".throw-dice").click(function() {
 		if (timesThrown < 3) {
+			renderScoreTable();
 			throwDice(dicesToRoll);
 			timesThrown += 1;
 			$(this).html("<h2>Yatzy!</h2>" + "<count>"+(3-timesThrown)+"</count>");
+			checkAndShowPossibleScores(dices, activePlayer);
 		}
 	});
      
