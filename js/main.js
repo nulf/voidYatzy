@@ -109,7 +109,7 @@ $(function() {
                 console.log("nope");
             }
            	if(score == 0) {
-	    		score = "X"
+	    		score = "X";
 	    	}
 	    	if(player == activePlayer) {
 	    		users[activePlayer].score[scorename] = score;
@@ -133,7 +133,7 @@ $(function() {
 			backdrop: "static",
 			show: false
 		})
-		renderScoreTable()
+		renderScoreTable();
 	} else {
 		// Autoshow modal on load
 		$(".myModal").modal({
