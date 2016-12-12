@@ -388,7 +388,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
     var confetti = new confetti.Context('confetti');
-    //confetti.start();
+    confetti.start();
     window.addEventListener('resize', function (event) {
         confetti.resize();
     });

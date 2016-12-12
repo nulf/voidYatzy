@@ -392,8 +392,13 @@ function newRound() {
 	if(checkFullScoreBoard()) {
 		// To show the last insert point render table.
 		renderScoreTable();
+		totalScore();
 		// Run winner popup! and pause the game!
 		$(".winner").modal("show");
+		$("#winText").html("<h1>" + "1. " + users[0].name + ", " + users[0].totalScore + " points" + "</h1><br>" + 
+							"<h3>2. " + users[1].name + ", " + users[1].totalScore + " points" + "</h3><br>" +
+							"<h3>3. " + users[2].name + ", " + users[2].totalScore + " points" + "</h3><br>");
+		$("#confetti").css("display", "inline");
 		return;
 	}
 
@@ -445,19 +450,28 @@ function checkAndShowPossibleScores(dices, user)  {
         if(possibleScore && index <= 5) {
             $("td[data-user='" + user + "'][data-scorename='" + index + "']").css("background-color", "green");
         } else if (possibleScore && index > 5) {
-            $("td[data-user='" + user + "'][data-scorename='" + (index + 2) + "']").css("background-color", "green");
+            $("td[data-user='" + user + "'][data-scorename='" + (index + 2) + "']").css("background-color", "green ");
         }
     });
 }
 
 function totalScore() {
+	var totalSumArray = [];
+	var totalScoreArray = [];
 	users.forEach (function(user){
 		var totalSum = 0;
 		user.score.forEach(function(score, index){
 			if (typeof score === 'number' && index >= 6)
 				totalSum += score;
 		}) 
-		user.score.push(totalSum);
+		totalScoreArray.push(totalSum);
+		user.totalScore = totalSum;
 		$("td[data-user='" + user.id + "'][data-scorename='" + 17 + "']").text(totalSum);
 	})
+
+	users.sort(	
+		function sortNumber(a,b) {
+    		return b.totalScore - a.totalScore;
+		}
+	);
 }
