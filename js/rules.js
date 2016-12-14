@@ -74,8 +74,10 @@ var handRules = {
         var diceArrayCopy = dices.slice();
         diceArrayCopy.sort();
         diceArrayCopy = diceArrayCopy.join("");
-        if(sumArray = /(.)\1{1}/.exec(diceArrayCopy)) {
+        if((sumArray = /(.)\1{1}/.exec(diceArrayCopy)) && !/(.)\1{3}/.test(diceArrayCopy)) {
+            console.log(sumArray);
             var sum = sumArray[0];
+            
             pair1 = (Number(sum[0]) + Number(sum[1]));
             diceArrayCopy = diceArrayCopy.replace(sumArray[0], "");
             if(sumArray2 = /(.)\1{1}/.exec(diceArrayCopy)) {
