@@ -115,7 +115,7 @@ $(function() {
             } else {
                 console.log("nope");
             }
-           	if(score == 0) {
+           	if(score == 0 && player == activePlayer) {
                 sound = new Audio("sounds/crossModal.mp3"); sound.play();
            		$('.bs-example-modal-sm').find('.btn-cross').data("score",scorename);
            		$('.bs-example-modal-sm').find('.modal-body').html("<h4>Vill du verkligen vill stryka "+scoreName[scorename]+"</h4>");
