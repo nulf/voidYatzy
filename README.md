@@ -1,1 +1,1 @@
-# voidYatzy - Ultimate zombie yatzy
+# Team Void's Yatzy v1.0
