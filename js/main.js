@@ -474,9 +474,9 @@ function checkAndShowPossibleScores(dices, user)  {
     
     possibilityArray.forEach(function(possibleScore, index) {
         if(possibleScore && index <= 5) {
-            $("td[data-user='" + user + "'][data-scorename='" + index + "']").css("background-color", "green");
+            $("td[data-user='" + user + "'][data-scorename='" + index + "']").css("background-color", "#9fff80");
         } else if (possibleScore && index > 5) {
-            $("td[data-user='" + user + "'][data-scorename='" + (index + 2) + "']").css("background-color", "green ");
+            $("td[data-user='" + user + "'][data-scorename='" + (index + 2) + "']").css("background-color", "#9fff80 ");
         }
     });
 }
