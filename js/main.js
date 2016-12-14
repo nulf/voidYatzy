@@ -1,5 +1,5 @@
 /* ANVÄND DENNA FÖR ATT UNDVIKA POPUP RUTA */
-var DEMO = true;
+var DEMO = false;
 
 /* Global Variables
 =================================== */
@@ -88,6 +88,9 @@ $(function() {
 			$(this).html("<h2>Yatzy!</h2>" + "<count>"+(3-timesThrown)+"</count>");
 			checkAndShowPossibleScores(dices, activePlayer);
             sound = new Audio("sounds/rollDice.mp3"); sound.play();
+            if(timesThrown == 3) {
+                sound = new Audio("sounds/youCanDoit.mp3"); sound.play(); 
+            }
 		}
 	});
      
@@ -210,6 +213,10 @@ $(function() {
 	$(".btn-StartGame").click(function() {
 		if(users.length > 0) {
 			$(".myModal").modal("toggle");
+            var audio = $("#introSound");
+            audio.animate({volume: 0}, 1000, function() {
+                sound = new Audio("sounds/Begin.mp3"); sound.play();
+            });
 			newRound();
 		}
 	});
@@ -420,6 +427,8 @@ function newRound() {
 
 	//Check if the last users scoreboard is full
 	if(checkFullScoreBoard()) {
+        sound = new Audio("sounds/winner.mp3"); sound.play();
+        setTimeout(function(){ sound = new Audio("sounds/winner.mp3"); sound.play(); }, 1000);
 		// To show the last insert point render table.
 		renderScoreTable();
 		totalScore();
