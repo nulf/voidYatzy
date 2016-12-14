@@ -87,6 +87,7 @@ $(function() {
 			timesThrown += 1;
 			$(this).html("<h2>Yatzy!</h2>" + "<count>"+(3-timesThrown)+"</count>");
 			checkAndShowPossibleScores(dices, activePlayer);
+            sound = new Audio("sounds/rollDice.mp3"); sound.play();
 		}
 	});
      
@@ -115,12 +116,14 @@ $(function() {
                 console.log("nope");
             }
            	if(score == 0) {
+                sound = new Audio("sounds/crossModal.mp3"); sound.play();
            		$('.bs-example-modal-sm').find('.btn-cross').data("score",scorename);
            		$('.bs-example-modal-sm').find('.modal-body').html("<h4>Vill du verkligen vill stryka "+scoreName[scorename]+"</h4>");
 	    		$('.bs-example-modal-sm').modal('toggle');
 		    	return;
 	    	}
 	    	if(player == activePlayer) {
+                sound = new Audio("sounds/getPoints.mp3"); sound.play();
 	    		users[activePlayer].score[scorename] = score;
 	    		newRound();
 	    	}
@@ -138,6 +141,7 @@ $(function() {
 		$('.bs-example-modal-sm').modal('toggle');
 	    scorename = $(this).data('score');
 	    users[activePlayer].score[scorename] = "X";
+        sound = new Audio("sounds/ahhh.mp3"); sound.play();
 	    newRound();
 
 	});
@@ -234,7 +238,7 @@ $(function() {
 		if($(this).is(":animated") || fullt == 4 || timesThrown <= 0) {
 			return;
 		}
-
+        sound = new Audio("sounds/lockDice.mp3"); sound.play();
 		$(".throw-dice").attr("disabled","disabled");
 
 		if(freeSavePoint === false) {
@@ -390,7 +394,7 @@ function newRound() {
 	dicesToRoll = [1, 1, 1, 1, 1];
 	timesThrown = 0;
 
-	$(".throw-dice").html("<h2>Yatzy!</h2><count>0</count>")
+	$(".throw-dice").html("<h2>Yatzy!</h2><count>3</count>")
 
 	// Animate back the dices to there position
 	$(".hold").each(function() {
