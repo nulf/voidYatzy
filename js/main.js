@@ -468,8 +468,10 @@ function checkAndShowPossibleScores(dices, user)  {
     var possibilityArray = [];
     var indexOfRule = 0;
     for(var rule in handRules) {
-        possibilityArray[indexOfRule] = handRules[rule](dices);
-        indexOfRule += 1;
+    	if(!users[user].score[indexOfRule]) {
+	        possibilityArray[indexOfRule] = handRules[rule](dices);
+	    }
+	    indexOfRule += 1;
     }
     
     possibilityArray.forEach(function(possibleScore, index) {
