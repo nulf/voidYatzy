@@ -427,7 +427,6 @@ function newRound() {
 
 	//Check if the last users scoreboard is full
 	if(checkFullScoreBoard()) {
-        sound = new Audio("sounds/winner.mp3"); sound.play();
         setTimeout(function(){ sound = new Audio("sounds/winner.mp3"); sound.play(); }, 1000);
 		// To show the last insert point render table.
 		renderScoreTable();
