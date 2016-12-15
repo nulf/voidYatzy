@@ -434,9 +434,14 @@ function newRound() {
 		totalScore();
 		// Run winner popup! and pause the game!
 		$(".winner").modal("show");
-		$("#winText").html("<h1>" + "1. " + users[0].name + ", " + users[0].totalScore + " points" + "</h1><br>" + 
-							"<h3>2. " + users[1].name + ", " + users[1].totalScore + " points" + "</h3><br>" +
-							"<h3>3. " + users[2].name + ", " + users[2].totalScore + " points" + "</h3><br>");
+		$("#winText").html("<h1>" + "1. " + users[0].name + ", " + users[0].totalScore + " points" + "</h1><br>");
+		if(users[1]) {
+			$("#winText").append("<h3>2. " + users[1].name + ", " + users[1].totalScore + " points" + "</h3><br>");	
+		}
+		if(users[2]) {
+			$("#winText").append("<h3>3. " + users[2].name + ", " + users[2].totalScore + " points" + "</h3><br>");	
+		}
+		 
 		$("#confetti").css("display", "inline");
 		return;
 	}
